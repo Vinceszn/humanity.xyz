@@ -47,3 +47,6 @@ __pycache__/
 *.swp
 *.swo
 *.tsbuildinfo
+
+# Databases (use migrations or init scripts instead of committing raw DB files)
+packages/data/*.db
