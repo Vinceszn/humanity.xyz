@@ -1,0 +1,70 @@
+/* Brand font: Audiowide via next/font */
+.font-audiowide { font-family: var(--font-audiowide), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global typography and smoothing */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+body { font-feature-settings: "ss01" on, "cv01" on; }
+
+/* Simple fade utility if needed */
+.fade-in { animation: fade-in 300ms ease-out; }
+@keyframes fade-in { from { opacity: 0; transform: translateY(2px);} to { opacity: 1; transform: translateY(0);} }
+
+/* Looping gradient blobs for background animations */
+.bg-loop {
+	position: relative;
+	overflow: hidden;
+}
+.bg-loop .blob {
+	position: absolute;
+	display: block;
+	width: 55vmax;
+	height: 55vmax;
+	border-radius: 50%;
+	filter: blur(40px);
+	opacity: 0.4;
+	mix-blend-mode: multiply;
+	will-change: transform;
+}
+.bg-loop .blob-a {
+	/* Indigo 600 */
+	background: radial-gradient(circle at 30% 30%, rgba(79,70,229,0.9), rgba(79,70,229,0));
+	top: -12vmax; left: -14vmax;
+	animation: float 14s ease-in-out -2s infinite;
+}
+.bg-loop .blob-b {
+	/* Purple/Violet */
+	background: radial-gradient(circle at 70% 50%, rgba(124,58,237,0.9), rgba(124,58,237,0));
+	bottom: -14vmax; right: -10vmax;
+	animation: float-alt 18s ease-in-out -4s infinite;
+}
+.bg-loop .blob-c {
+	/* Pink 500 */
+	background: radial-gradient(circle at 50% 70%, rgba(236,72,153,0.9), rgba(236,72,153,0));
+	top: 12vmax; right: 18vmax;
+	animation: float 22s ease-in-out -6s infinite;
+}
+
+@keyframes float {
+	0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+	20% { transform: translate3d(10vmax, -6vmax, 0) rotate(8deg) scale(1.08); }
+	50% { transform: translate3d(-8vmax, -12vmax, 0) rotate(-6deg) scale(0.95); }
+	80% { transform: translate3d(-12vmax, 8vmax, 0) rotate(6deg) scale(1.04); }
+	100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+
+@keyframes float-alt {
+	0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+	25% { transform: translate3d(-8vmax, 6vmax, 0) rotate(-7deg) scale(1.06); }
+	55% { transform: translate3d(10vmax, 4vmax, 0) rotate(5deg) scale(0.97); }
+	85% { transform: translate3d(6vmax, -10vmax, 0) rotate(8deg) scale(1.03); }
+	100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+
+/* Reduced motion: keep background static */
+@media (prefers-reduced-motion: reduce) {
+	.bg-loop .blob { animation: none; }
+}

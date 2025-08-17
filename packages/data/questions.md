@@ -1,0 +1,1288 @@
+# Questions Database
+
+This file contains the personality assessment questions used by the HUMANITY Test.
+
+## Format
+
+Each question has:
+- `id`: Unique identifier
+- `text`: The question text
+- `options`: Array of answer choices with:
+  - `key`: Letter identifier (A-E)
+  - `text`: Answer text
+  - `vector`: Archetype scoring weights for V, I, E, P, C, R, S, M, L, A
+
+## Questions
+
+The full questions dataset is stored in the API backend and loaded dynamically from the database.
+
+### Question Categories
+
+1. **Life Changes** - How you adapt to major transitions
+2. **Team Dynamics** - Your natural role in group settings
+3. **Problem Solving** - Your approach to obstacles and challenges
+4. **Motivation** - What drives you in work and personal goals
+5. **Communication** - How you interact in group discussions
+6. **Learning** - Your preferred methods for skill acquisition
+7. **Decision Making** - How you process choices affecting others
+8. **Conflict Resolution** - Your approach to handling disagreements
+9. **Creativity** - How you begin and manage creative projects
+10. **Energy & Focus** - What conditions energize you most
+
+Each question is designed to measure your alignment with the 10 core archetypes:
+- **V** (Visionary), **I** (Dreamer), **E** (Architect), **P** (Catalyst), **C** (Realist)
+- **R** (Maverick), **S** (Connector), **M** (Sage), **L** (Builder), **A** (Harmonizer)
+
+## Data Storage
+
+The actual question data is stored securely in the backend database and served through the API endpoints. This approach ensures data integrity and allows for dynamic updates without requiring code changes.
+"options": [
+{
+"key": "A",
+"text": "Organizer who structures the plan and timelines.",
+"vector": {"V": -0.2, "I": -0.1, "E": 0.2, "P": 0.9, "C": -0.4, "R": -0.3, "S": 0.4, "M": 0, "L": 0.6, "A": 0}
+},
+{
+"key": "B",
+"text": "Idea generator who pushes creative boundaries.",
+"vector": {"V": 0.8, "I": 0.6, "E": 0.3, "P": -0.5, "C": 0.8, "R": 0.5, "S": 0, "M": 0.2, "L": -0.6, "A": 0.3}
+},
+{
+"key": "C",
+"text": "Mediator who connects people and resolves conflicts.",
+"vector": {"V": 0, "I": 0.1, "E": 0, "P": 0, "C": 0.2, "R": -0.4, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Challenger who questions assumptions and risks.",
+"vector": {"V": 0.4, "I": 0.3, "E": 0.1, "P": 0.2, "C": 0.4, "R": 0.6, "S": 0, "M": 0.3, "L": -0.3, "A": 0.4}
+},
+{
+"key": "E",
+"text": "Supporter who prefers to help quietly and reliably.",
+"vector": {"V": -0.1, "I": -0.2, "E": -0.3, "P": 0.4, "C": -0.3, "R": -0.5, "S": 0.4, "M": 0.2, "L": 0.5, "A": -0.1}
+}
+]
+},
+{
+"id": 3,
+"text": "How do you handle unexpected obstacles?",
+"options": [
+{
+"key": "A",
+"text": "Reassess your plan and analyze the problem logically.",
+"vector": {"V": 0, "I": -0.1, "E": -0.3, "P": 0.9, "C": 0, "R": -0.4, "S": -0.1, "M": 0, "L": 0.8, "A": 0}
+},
+{
+"key": "B",
+"text": "Look for alternative, creative solutions immediately.",
+"vector": {"V": 0.7, "I": 0.5, "E": 0.2, "P": -0.3, "C": 0.7, "R": 0.6, "S": 0, "M": 0.2, "L": -0.5, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Reach out for help or advice.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.2, "R": -0.3, "S": 0.8, "M": 0.5, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Stay calm and adapt your approach gradually.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.3, "C": 0.3, "R": 0, "S": 0.1, "M": 0.2, "L": 0, "A": 0.7}
+},
+{
+"key": "E",
+"text": "Prefer to pause and avoid making decisions right away.",
+"vector": {"V": -0.5, "I": -0.4, "E": -0.6, "P": 0.4, "C": -0.2, "R": -0.7, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.5}
+}
+]
+},
+{
+"id": 4,
+"text": "What motivates you most at work or school?",
+"options": [
+{
+"key": "A",
+"text": "Achieving clearly defined goals and mastery.",
+"vector": {"V": 0, "I": -0.1, "E": -0.2, "P": 0.8, "C": 0, "R": -0.3, "S": 0, "M": -0.1, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Exploring new ideas and pushing boundaries.",
+"vector": {"V": 0.8, "I": 0.5, "E": 0.3, "P": -0.4, "C": 0.7, "R": 0.6, "S": 0, "M": 0.2, "L": -0.6, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Helping others and building relationships.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Solving complex problems and innovating.",
+"vector": {"V": 0.5, "I": 0.2, "E": 0.1, "P": 0.7, "C": 0.5, "R": 0.3, "S": 0, "M": 0.1, "L": 0.3, "A": 0.3}
+},
+{
+"key": "E",
+"text": "Maintaining stability and avoiding risks.",
+"vector": {"V": -0.3, "I": -0.4, "E": -0.5, "P": 0.3, "C": -0.3, "R": -0.7, "S": 0, "M": -0.2, "L": 0.5, "A": -0.4}
+}
+]
+},
+{
+"id": 5,
+"text": "How do you prefer to communicate in group settings?",
+"options": [
+{
+"key": "A",
+"text": "Present clear, structured arguments and facts.",
+"vector": {"V": 0, "I": -0.1, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.2, "S": 0, "M": 0, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Share spontaneous, imaginative ideas.",
+"vector": {"V": 0.7, "I": 0.4, "E": 0.5, "P": -0.4, "C": 0.7, "R": 0.5, "S": 0, "M": 0.3, "L": -0.5, "A": 0.3}
+},
+{
+"key": "C",
+"text": "Listen actively and foster connection.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.7, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Question ideas and challenge consensus respectfully.",
+"vector": {"V": 0.4, "I": 0.3, "E": 0.1, "P": 0.4, "C": 0.4, "R": 0.6, "S": 0, "M": 0.2, "L": -0.3, "A": 0.4}
+},
+{
+"key": "E",
+"text": "Prefer to observe and speak only when necessary.",
+"vector": {"V": -0.2, "I": -0.3, "E": -0.5, "P": 0.4, "C": -0.2, "R": -0.5, "S": -0.3, "M": -0.2, "L": 0.5, "A": -0.4}
+}
+]
+}
+]
+}
+
+{
+"questions": [
+{
+"id": 6,
+"text": "When learning a new skill, you prefer to:",
+"options": [
+{
+"key": "A",
+"text": "Follow a structured curriculum step-by-step.",
+"vector": {"V": -0.1, "I": -0.3, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.4, "S": 0, "M": -0.1, "L": 0.8, "A": -0.1}
+},
+{
+"key": "B",
+"text": "Jump in and learn by trial and error.",
+"vector": {"V": 0.7, "I": 0.5, "E": 0.4, "P": -0.5, "C": 0.5, "R": 0.6, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Learn with others and share experiences along the way.",
+"vector": {"V": 0, "I": 0.1, "E": 0.3, "P": 0, "C": 0.3, "R": -0.2, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Blend structure with experimentation as you go.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.3, "C": 0.4, "R": 0.2, "S": 0.1, "M": 0.2, "L": 0.2, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Prefer to stick to familiar skills instead of learning new ones.",
+"vector": {"V": -0.5, "I": -0.4, "E": -0.5, "P": 0.4, "C": -0.2, "R": -0.7, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.5}
+}
+]
+},
+{
+"id": 7,
+"text": "Faced with a decision that affects others, you:",
+"options": [
+{
+"key": "A",
+"text": "Analyze data to choose the most logical option.",
+"vector": {"V": 0, "I": -0.2, "E": -0.3, "P": 0.9, "C": -0.1, "R": -0.3, "S": -0.1, "M": 0, "L": 0.8, "A": 0}
+},
+{
+"key": "B",
+"text": "Go with your gut feeling.",
+"vector": {"V": 0.6, "I": 0.5, "E": 0.2, "P": -0.3, "C": 0.6, "R": 0.4, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Ask for input and try to reach consensus.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Consider both logic and intuition equally.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.4, "C": 0.5, "R": 0.1, "S": 0.1, "M": 0.2, "L": 0.2, "A": 0.5}
+},
+{
+"key": "E",
+"text": "Delay the decision until it’s unavoidable.",
+"vector": {"V": -0.4, "I": -0.3, "E": -0.5, "P": 0.3, "C": -0.2, "R": -0.6, "S": -0.2, "M": -0.3, "L": 0.4, "A": -0.4}
+}
+]
+},
+{
+"id": 8,
+"text": "Your approach to handling conflict is to:",
+"options": [
+{
+"key": "A",
+"text": "Address it directly and firmly.",
+"vector": {"V": 0.4, "I": 0.3, "E": 0.2, "P": 0.4, "C": 0.4, "R": 0.6, "S": 0, "M": 0.2, "L": 0.2, "A": 0.4}
+},
+{
+"key": "B",
+"text": "Avoid it unless absolutely necessary.",
+"vector": {"V": -0.5, "I": -0.4, "E": -0.6, "P": 0.3, "C": -0.3, "R": -0.7, "S": -0.1, "M": -0.3, "L": 0.5, "A": -0.5}
+},
+{
+"key": "C",
+"text": "Mediate and help others find common ground.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.4, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Redirect tension into problem-solving.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.5, "C": 0.5, "R": 0, "S": 0.1, "M": 0.2, "L": 0.3, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Use humor or distraction to defuse the situation.",
+"vector": {"V": 0.5, "I": 0.4, "E": 0.6, "P": -0.1, "C": 0.4, "R": 0.2, "S": 0.3, "M": 0.3, "L": -0.2, "A": 0.3}
+}
+]
+},
+{
+"id": 9,
+"text": "When starting a creative project, you:",
+"options": [
+{
+"key": "A",
+"text": "Plan the structure before beginning.",
+"vector": {"V": -0.1, "I": -0.2, "E": -0.1, "P": 0.8, "C": -0.3, "R": -0.3, "S": 0, "M": -0.1, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Dive in without a fixed plan to see where it goes.",
+"vector": {"V": 0.7, "I": 0.5, "E": 0.4, "P": -0.5, "C": 0.7, "R": 0.6, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Collaborate and bounce ideas around first.",
+"vector": {"V": 0, "I": 0.1, "E": 0.3, "P": 0, "C": 0.4, "R": -0.2, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Mix planning with open-ended exploration.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.3, "C": 0.5, "R": 0.2, "S": 0.1, "M": 0.2, "L": 0.2, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Prefer to wait until inspiration strikes.",
+"vector": {"V": -0.3, "I": -0.2, "E": -0.3, "P": 0.2, "C": 0.2, "R": -0.5, "S": -0.1, "M": -0.2, "L": 0.4, "A": -0.3}
+}
+]
+},
+{
+"id": 10,
+"text": "Your energy levels are highest when:",
+"options": [
+{
+"key": "A",
+"text": "Working towards a concrete, structured goal.",
+"vector": {"V": 0, "I": -0.2, "E": -0.2, "P": 0.9, "C": -0.2, "R": -0.3, "S": 0, "M": -0.1, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Exploring something entirely new.",
+"vector": {"V": 0.8, "I": 0.5, "E": 0.4, "P": -0.4, "C": 0.7, "R": 0.6, "S": 0, "M": 0.2, "L": -0.5, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Helping others succeed.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Solving challenging, open-ended problems.",
+"vector": {"V": 0.5, "I": 0.3, "E": 0.2, "P": 0.6, "C": 0.6, "R": 0.3, "S": 0, "M": 0.2, "L": 0.3, "A": 0.3}
+},
+{
+"key": "E",
+"text": "Maintaining routines and stability.",
+"vector": {"V": -0.3, "I": -0.4, "E": -0.5, "P": 0.3, "C": -0.3, "R": -0.6, "S": 0, "M": -0.2, "L": 0.5, "A": -0.4}
+}
+]
+}
+]
+}
+
+{
+"questions": [
+{
+"id": 11,
+"text": "Faced with a moral dilemma, you…",
+"options": [
+{
+"key": "A",
+"text": "Carefully consider principles and potential consequences.",
+"vector": {"V": 0, "I": -0.2, "E": -0.2, "P": 0.8, "C": 0, "R": -0.4, "S": 0, "M": -0.1, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Trust your gut instinct and act quickly.",
+"vector": {"V": 0.5, "I": 0.4, "E": 0.3, "P": -0.3, "C": 0.5, "R": 0.6, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Seek advice from someone you respect.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Balance both intuition and logic before deciding.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.4, "C": 0.4, "R": 0, "S": 0.2, "M": 0.2, "L": 0.2, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Avoid making a decision until absolutely necessary.",
+"vector": {"V": -0.5, "I": -0.4, "E": -0.5, "P": 0.4, "C": -0.2, "R": -0.6, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.5}
+}
+]
+},
+{
+"id": 12,
+"text": "Your work is interrupted by an urgent personal matter. You…",
+"options": [
+{
+"key": "A",
+"text": "Reprioritize tasks logically and manage both.",
+"vector": {"V": 0, "I": -0.1, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.4, "S": 0, "M": 0, "L": 0.8, "A": 0}
+},
+{
+"key": "B",
+"text": "Act fast and improvise to keep things moving.",
+"vector": {"V": 0.6, "I": 0.5, "E": 0.4, "P": -0.4, "C": 0.6, "R": 0.5, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Ask for help from colleagues or friends.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Adjust gradually, focusing on the most urgent tasks first.",
+"vector": {"V": 0.2, "I": 0.1, "E": 0, "P": 0.3, "C": 0.4, "R": 0, "S": 0.2, "M": 0.2, "L": 0, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Pause work entirely until the personal matter is resolved.",
+"vector": {"V": -0.6, "I": -0.4, "E": -0.5, "P": 0.4, "C": -0.2, "R": -0.6, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.4}
+}
+]
+},
+{
+"id": 13,
+"text": "A friend vents about a problem. Your instinct is to…",
+"options": [
+{
+"key": "A",
+"text": "Offer practical solutions immediately.",
+"vector": {"V": 0, "I": -0.1, "E": -0.1, "P": 0.8, "C": 0, "R": -0.3, "S": 0, "M": -0.1, "L": 0.6, "A": 0}
+},
+{
+"key": "B",
+"text": "Listen empathetically without judgment.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.4, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+},
+{
+"key": "C",
+"text": "Challenge their thinking to help them see new perspectives.",
+"vector": {"V": 0.4, "I": 0.3, "E": 0.2, "P": 0.3, "C": 0.4, "R": 0.6, "S": 0, "M": 0.3, "L": -0.3, "A": 0.4}
+},
+{
+"key": "D",
+"text": "Share a similar experience from your own life.",
+"vector": {"V": 0.2, "I": 0.1, "E": 0.3, "P": 0.2, "C": 0.3, "R": 0, "S": 0.3, "M": 0.5, "L": 0, "A": 0.2}
+},
+{
+"key": "E",
+"text": "Keep the conversation light to distract them.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.5, "P": -0.2, "C": 0.5, "R": 0.3, "S": 0, "M": 0.2, "L": -0.3, "A": 0.3}
+}
+]
+},
+{
+"id": 14,
+"text": "A trip is cancelled last minute. You…",
+"options": [
+{
+"key": "A",
+"text": "Quickly reorganize and plan something else.",
+"vector": {"V": 0.5, "I": 0.4, "E": 0.3, "P": 0.5, "C": 0.5, "R": 0.4, "S": 0, "M": 0.2, "L": 0.2, "A": 0.4}
+},
+{
+"key": "B",
+"text": "See it as a chance to relax and recharge at home.",
+"vector": {"V": -0.3, "I": -0.2, "E": -0.4, "P": 0.4, "C": -0.2, "R": -0.4, "S": 0, "M": -0.1, "L": 0.5, "A": -0.2}
+},
+{
+"key": "C",
+"text": "Invite friends to do something spontaneous.",
+"vector": {"V": 0.6, "I": 0.4, "E": 0.6, "P": -0.3, "C": 0.6, "R": 0.6, "S": 0.2, "M": 0.3, "L": -0.4, "A": 0.4}
+},
+{
+"key": "D",
+"text": "Use the time to tackle a personal project.",
+"vector": {"V": 0.2, "I": 0.1, "E": 0, "P": 0.3, "C": 0.3, "R": 0, "S": 0, "M": 0.2, "L": 0.3, "A": 0.2}
+},
+{
+"key": "E",
+"text": "Feel frustrated and prefer not to change plans.",
+"vector": {"V": -0.4, "I": -0.3, "E": -0.5, "P": 0.4, "C": -0.3, "R": -0.5, "S": -0.1, "M": -0.2, "L": 0.4, "A": -0.4}
+}
+]
+},
+
+{
+"questions": [
+{
+"id": 15,
+"text": "Your team is stuck on a decision. You…",
+"options": [
+{
+"key": "A",
+"text": "Take charge and decide based on logic and facts.",
+"vector": {"V": -0.1, "I": -0.1, "E": -0.1, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Propose a creative alternative to spark movement.",
+"vector": {"V": 0.7, "I": 0.5, "E": 0.4, "P": -0.4, "C": 0.6, "R": 0.6, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Encourage everyone to share and find consensus.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.4, "S": 0.9, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Ask challenging questions to break the deadlock.",
+"vector": {"V": 0.4, "I": 0.3, "E": 0.2, "P": 0.3, "C": 0.4, "R": 0.5, "S": 0, "M": 0.2, "L": -0.3, "A": 0.4}
+},
+{
+"key": "E",
+"text": "Wait to see if someone else resolves it.",
+"vector": {"V": -0.4, "I": -0.3, "E": -0.4, "P": 0.4, "C": -0.3, "R": -0.5, "S": -0.2, "M": -0.3, "L": 0.4, "A": -0.3}
+}
+]
+},
+{
+"id": 16,
+"text": "You receive critical feedback on something you’re proud of. You…",
+"options": [
+{
+"key": "A",
+"text": "Analyze the feedback carefully for improvements.",
+"vector": {"V": 0, "I": -0.1, "E": -0.3, "P": 0.9, "C": 0, "R": -0.4, "S": 0, "M": -0.1, "L": 0.8, "A": 0}
+},
+{
+"key": "B",
+"text": "Take it as a challenge to prove yourself creatively.",
+"vector": {"V": 0.7, "I": 0.5, "E": 0.4, "P": -0.3, "C": 0.6, "R": 0.6, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Ask for clarification and learn from the feedback.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Defend your work respectfully but firmly.",
+"vector": {"V": 0.4, "I": 0.3, "E": 0.3, "P": 0.3, "C": 0.4, "R": 0.5, "S": 0, "M": 0.2, "L": -0.3, "A": 0.4}
+},
+{
+"key": "E",
+"text": "Feel discouraged and lose motivation.",
+"vector": {"V": -0.5, "I": -0.4, "E": -0.6, "P": 0.3, "C": -0.2, "R": -0.6, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.5}
+}
+]
+},
+{
+"id": 17,
+"text": "You’re given a complex tool or app to use without instructions. You…",
+"options": [
+{
+"key": "A",
+"text": "Methodically explore and document how it works.",
+"vector": {"V": 0, "I": -0.2, "E": -0.3, "P": 0.9, "C": -0.3, "R": -0.4, "S": 0, "M": -0.1, "L": 0.8, "A": 0}
+},
+{
+"key": "B",
+"text": "Dive in and experiment until you figure it out.",
+"vector": {"V": 0.7, "I": 0.5, "E": 0.4, "P": -0.5, "C": 0.5, "R": 0.5, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Ask someone for guidance.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Combine trial and error with occasional research.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.3, "C": 0.4, "R": 0, "S": 0.2, "M": 0.2, "L": 0.2, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Avoid using it unless absolutely necessary.",
+"vector": {"V": -0.5, "I": -0.4, "E": -0.5, "P": 0.4, "C": -0.2, "R": -0.6, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.5}
+}
+]
+},
+{
+"id": 18,
+"text": "You’re asked to lead a team of mixed experience levels. You…",
+"options": [
+{
+"key": "A",
+"text": "Set clear processes and expectations for everyone.",
+"vector": {"V": -0.1, "I": -0.2, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Inspire through bold ideas and vision.",
+"vector": {"V": 0.8, "I": 0.5, "E": 0.5, "P": -0.4, "C": 0.6, "R": 0.6, "S": 0, "M": 0.3, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Pair people strategically so they can learn from each other.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Mix structure with flexibility to suit each person.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.2, "P": 0.3, "C": 0.4, "R": 0, "S": 0.2, "M": 0.3, "L": 0.2, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Prefer to avoid leadership roles if possible.",
+"vector": {"V": -0.5, "I": -0.4, "E": -0.5, "P": 0.4, "C": -0.2, "R": -0.6, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.5}
+}
+]
+},
+{
+"id": 19,
+"text": "You’re behind on a task. You…",
+"options": [
+{
+"key": "A",
+"text": "Create a strict schedule to catch up efficiently.",
+"vector": {"V": 0, "I": -0.1, "E": -0.1, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": -0.1, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Work longer hours and improvise as you go.",
+"vector": {"V": 0.6, "I": 0.5, "E": 0.4, "P": -0.4, "C": 0.5, "R": 0.5, "S": 0, "M": 0.2, "L": -0.3, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Ask for help to share the workload.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Break it into small, manageable chunks.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.3, "C": 0.4, "R": 0, "S": 0.2, "M": 0.2, "L": 0.2, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Accept that it will be late and move on.",
+"vector": {"V": -0.5, "I": -0.4, "E": -0.4, "P": 0.3, "C": -0.3, "R": -0.5, "S": -0.2, "M": -0.3, "L": 0.4, "A": -0.4}
+}
+]
+},
+{
+"id": 20,
+"text": "You’re offered leadership of a new high-pressure project. You…",
+"options": [
+{
+"key": "A",
+"text": "Accept and create a detailed plan to manage everything.",
+"vector": {"V": -0.1, "I": -0.2, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Jump in enthusiastically and rally the team.",
+"vector": {"V": 0.8, "I": 0.5, "E": 0.5, "P": -0.4, "C": 0.6, "R": 0.6, "S": 0, "M": 0.3, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Negotiate responsibilities before fully committing.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Take the role but pace the work carefully.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.2, "P": 0.3, "C": 0.4, "R": 0, "S": 0.2, "M": 0.2, "L": 0.2, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Decline if you feel it’s too much pressure.",
+"vector": {"V": -0.6, "I": -0.5, "E": -0.6, "P": 0.4, "C": -0.2, "R": -0.6, "S": -0.2, "M": -0.4, "L": 0.5, "A": -0.5}
+}
+]
+}
+]
+}
+
+{
+"questions": [
+{
+"id": 21,
+"text": "You realize you’ve been wrong in a debate. You…",
+"options": [
+{
+"key": "A",
+"text": "Admit it openly and adjust your view.",
+"vector": {"V": 0, "I": -0.1, "E": -0.2, "P": 0.8, "C": 0, "R": -0.4, "S": 0, "M": -0.1, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Explain your reasoning but remain open to discussion.",
+"vector": {"V": 0.4, "I": 0.3, "E": 0.2, "P": 0.3, "C": 0.4, "R": 0.5, "S": 0, "M": 0.3, "L": -0.3, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Listen carefully and try to learn from the other side.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Quietly reconsider but don’t admit it immediately.",
+"vector": {"V": -0.1, "I": -0.2, "E": -0.3, "P": 0.3, "C": -0.2, "R": -0.5, "S": -0.1, "M": -0.2, "L": 0.3, "A": -0.3}
+},
+{
+"key": "E",
+"text": "Defend your position strongly despite doubts.",
+"vector": {"V": 0.6, "I": 0.5, "E": 0.4, "P": -0.4, "C": 0.6, "R": 0.7, "S": 0, "M": 0.3, "L": -0.5, "A": 0.5}
+}
+]
+},
+{
+"id": 22,
+"text": "You get a chance to learn a completely unrelated skill. You…",
+"options": [
+{
+"key": "A",
+"text": "Follow a structured approach to learn it thoroughly.",
+"vector": {"V": -0.1, "I": -0.3, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.4, "S": 0, "M": -0.1, "L": 0.8, "A": -0.1}
+},
+{
+"key": "B",
+"text": "Dive in and learn by trial and error.",
+"vector": {"V": 0.7, "I": 0.5, "E": 0.4, "P": -0.5, "C": 0.5, "R": 0.6, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Learn with others and share experiences.",
+"vector": {"V": 0, "I": 0.1, "E": 0.3, "P": 0, "C": 0.3, "R": -0.2, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Mix structure with experimentation.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.3, "C": 0.4, "R": 0.2, "S": 0.1, "M": 0.2, "L": 0.2, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Prefer to focus on skills related to your current path.",
+"vector": {"V": -0.5, "I": -0.4, "E": -0.5, "P": 0.4, "C": -0.2, "R": -0.7, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.5}
+}
+]
+},
+{
+"id": 23,
+"text": "You’re suddenly given full creative control over a project. You…",
+"options": [
+{
+"key": "A",
+"text": "Plan carefully to balance creativity with goals.",
+"vector": {"V": 0, "I": -0.1, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Explore bold, unconventional ideas fearlessly.",
+"vector": {"V": 0.8, "I": 0.6, "E": 0.5, "P": -0.4, "C": 0.6, "R": 0.7, "S": 0, "M": 0.3, "L": -0.4, "A": 0.5}
+},
+{
+"key": "C",
+"text": "Collaborate closely to incorporate diverse input.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.7, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Blend innovation with structure for balance.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.2, "P": 0.4, "C": 0.4, "R": 0, "S": 0.2, "M": 0.3, "L": 0.2, "A": 0.6}
+},
+{
+"key": "E",
+"text": "Prefer some guidelines and limits to creativity.",
+"vector": {"V": -0.4, "I": -0.3, "E": -0.4, "P": 0.4, "C": -0.2, "R": -0.5, "S": -0.1, "M": -0.3, "L": 0.5, "A": -0.4}
+}
+]
+},
+{
+"id": 24,
+"text": "A mistake costs the team money. You…",
+"options": [
+{
+"key": "A",
+"text": "Take responsibility and analyze how to prevent recurrence.",
+"vector": {"V": 0, "I": -0.1, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.4, "S": 0, "M": 0, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Look for creative solutions to fix the issue quickly.",
+"vector": {"V": 0.7, "I": 0.5, "E": 0.3, "P": -0.4, "C": 0.6, "R": 0.6, "S": 0, "M": 0.2, "L": -0.3, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Support the team emotionally and help regroup.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Balance accountability with flexibility in response.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.2, "P": 0.4, "C": 0.3, "R": 0, "S": 0.2, "M": 0.3, "L": 0.2, "A": 0.5}
+},
+{
+"key": "E",
+"text": "Try to minimize attention to the mistake and move on.",
+"vector": {"V": -0.5, "I": -0.4, "E": -0.5, "P": 0.3, "C": -0.2, "R": -0.6, "S": -0.3, "M": -0.4, "L": 0.4, "A": -0.5}
+}
+]
+},
+{
+"id": 25,
+"text": "You’re told to present an idea to a large audience. You…",
+"options": [
+{
+"key": "A",
+"text": "Prepare meticulously with facts and data.",
+"vector": {"V": 0, "I": -0.1, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.7, "A": 0}
+},
+{
+"key": "B",
+"text": "Use storytelling and vivid imagination to engage.",
+"vector": {"V": 0.7, "I": 0.5, "E": 0.5, "P": -0.4, "C": 0.6, "R": 0.6, "S": 0, "M": 0.3, "L": -0.5, "A": 0.4}
+},
+{
+"key": "C",
+"text": "Focus on connecting personally with the audience.",
+"vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+},
+{
+"key": "D",
+"text": "Mix logic and emotion for balanced impact.",
+"vector": {"V": 0.3, "I": 0.2, "E": 0.2, "P": 0.4, "C": 0.4, "R": 0.2, "S": 0.2, "M": 0.3, "L": 0.2, "A": 0.5}
+},
+{
+"key": "E",
+"text": "Prefer to let others present if possible.",
+"vector": {"V": -0.4, "I": -0.3, "E": -0.4, "P": 0.4, "C": -0.3, "R": -0.4, "S": -0.2, "M": -0.3, "L": 0.4, "A": -0.4}
+}
+]
+}
+]
+}
+
+```json
+{
+  "questions": [
+    {
+      "id": 26,
+      "text": "You discover a faster, untested method for a routine task. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Test carefully and document the new method’s pros and cons.",
+          "vector": {"V": 0, "I": -0.1, "E": -0.3, "P": 0.9, "C": -0.3, "R": -0.4, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Try it immediately to see how it performs.",
+          "vector": {"V": 0.7, "I": 0.5, "E": 0.4, "P": -0.4, "C": 0.6, "R": 0.6, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+        },
+        {
+          "key": "C",
+          "text": "Discuss with others before adopting it.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Adapt the method gradually into your routine.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.3, "C": 0.4, "R": 0, "S": 0.2, "M": 0.2, "L": 0.2, "A": 0.6}
+        },
+        {
+          "key": "E",
+          "text": "Stick with the trusted method unless forced to change.",
+          "vector": {"V": -0.5, "I": -0.4, "E": -0.5, "P": 0.4, "C": -0.2, "R": -0.6, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.5}
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "text": "You’re asked to train someone with no background in the work. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Create clear, step-by-step instructions and expectations.",
+          "vector": {"V": 0, "I": -0.2, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Encourage them to learn through trial and error.",
+          "vector": {"V": 0.7, "I": 0.5, "E": 0.4, "P": -0.4, "C": 0.6, "R": 0.6, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+        },
+        {
+          "key": "C",
+          "text": "Foster collaborative learning and mutual support.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Balance structure with flexibility to suit their style.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.2, "P": 0.3, "C": 0.4, "R": 0, "S": 0.2, "M": 0.3, "L": 0.2, "A": 0.6}
+        },
+        {
+          "key": "E",
+          "text": "Prefer not to train unless absolutely necessary.",
+          "vector": {"V": -0.6, "I": -0.5, "E": -0.6, "P": 0.4, "C": -0.2, "R": -0.6, "S": -0.2, "M": -0.4, "L": 0.5, "A": -0.5}
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "text": "Your friend asks for advice but ignores it. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Respect their choice but offer support if needed later.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Try to persuade them with more convincing arguments.",
+          "vector": {"V": 0.4, "I": 0.4, "E": 0.3, "P": 0.3, "C": 0.5, "R": 0.4, "S": 0, "M": 0.2, "L": -0.3, "A": 0.3}
+        },
+        {
+          "key": "C",
+          "text": "Listen without judgment and stay available.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.4, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Accept it and adjust how you offer advice next time.",
+          "vector": {"V": 0.2, "I": 0.1, "E": 0, "P": 0.2, "C": 0.3, "R": 0, "S": 0.2, "M": 0.3, "L": 0.2, "A": 0.4}
+        },
+        {
+          "key": "E",
+          "text": "Feel frustrated and distance yourself emotionally.",
+          "vector": {"V": -0.5, "I": -0.4, "E": -0.5, "P": 0.3, "C": -0.2, "R": -0.6, "S": -0.3, "M": -0.5, "L": 0.5, "A": -0.4}
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "text": "A project is too big for one person. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Break it down and delegate tasks clearly.",
+          "vector": {"V": 0, "I": -0.1, "E": -0.1, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Take on as much as possible yourself to maintain control.",
+          "vector": {"V": 0.6, "I": 0.5, "E": 0.3, "P": -0.4, "C": 0.5, "R": 0.5, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+        },
+        {
+          "key": "C",
+          "text": "Collaborate actively with others to share the load.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.4, "R": -0.4, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Focus on your strengths and leave other parts to experts.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.3, "C": 0.4, "R": 0, "S": 0.2, "M": 0.3, "L": 0.3, "A": 0.5}
+        },
+        {
+          "key": "E",
+          "text": "Feel overwhelmed and struggle to make progress.",
+          "vector": {"V": -0.5, "I": -0.5, "E": -0.6, "P": 0.3, "C": -0.3, "R": -0.6, "S": -0.3, "M": -0.4, "L": 0.4, "A": -0.5}
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "text": "You get an unexpected windfall of money. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Invest it carefully to grow long term.",
+          "vector": {"V": 0, "I": -0.1, "E": -0.3, "P": 0.9, "C": -0.3, "R": -0.4, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Spend some now and save the rest.",
+          "vector": {"V": 0.4, "I": 0.3, "E": 0.2, "P": 0.3, "C": 0.4, "R": 0, "S": 0.1, "M": 0.2, "L": 0.3, "A": 0.4}
+        },
+        {
+          "key": "C",
+          "text": "Share it generously with friends or causes.",
+          "vector": {"V": 0, "I": 0, "E": 0.3, "P": 0, "C": 0.3, "R": -0.2, "S": 0.8, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Take a calculated risk with part of it for excitement.",
+          "vector": {"V": 0.7, "I": 0.5, "E": 0.4, "P": -0.4, "C": 0.5, "R": 0.6, "S": 0, "M": 0.3, "L": -0.3, "A": 0.4}
+        },
+        {
+          "key": "E",
+          "text": "Feel unsure and leave it untouched for now.",
+          "vector": {"V": -0.4, "I": -0.3, "E": -0.4, "P": 0.4, "C": -0.3, "R": -0.5, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.4}
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+```json
+{
+  "questions": [
+    {
+      "id": 31,
+      "text": "You’re given a strict set of rules to follow. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Follow them exactly to ensure consistency and avoid errors.",
+          "vector": {"V": 0, "I": -0.2, "E": -0.3, "P": 0.9, "C": -0.4, "R": -0.6, "S": 0, "M": 0, "L": 0.8, "A": -0.1}
+        },
+        {
+          "key": "B",
+          "text": "Look for ways to innovate within the boundaries.",
+          "vector": {"V": 0.7, "I": 0.5, "E": 0.3, "P": -0.4, "C": 0.6, "R": 0.4, "S": 0, "M": 0.2, "L": -0.4, "A": 0.4}
+        },
+        {
+          "key": "C",
+          "text": "Discuss the rules with others to understand their purpose.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.7, "M": 0.6, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Adapt your approach when possible without breaking rules.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.3, "C": 0.4, "R": 0, "S": 0.2, "M": 0.3, "L": 0.2, "A": 0.5}
+        },
+        {
+          "key": "E",
+          "text": "Feel constrained and look for ways to challenge or avoid them.",
+          "vector": {"V": -0.5, "I": -0.4, "E": -0.5, "P": 0.3, "C": -0.5, "R": -0.6, "S": -0.2, "M": -0.4, "L": 0.4, "A": -0.5}
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "text": "A friend shares a controversial opinion. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Analyze the logic behind it objectively.",
+          "vector": {"V": 0, "I": -0.2, "E": -0.3, "P": 0.9, "C": -0.3, "R": -0.2, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Express your own strong viewpoint passionately.",
+          "vector": {"V": 0.6, "I": 0.5, "E": 0.5, "P": -0.3, "C": 0.5, "R": 0.5, "S": 0, "M": 0.2, "L": -0.4, "A": 0.3}
+        },
+        {
+          "key": "C",
+          "text": "Listen and try to understand their perspective fully.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.4, "R": -0.4, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Challenge respectfully to encourage dialogue.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.3, "C": 0.4, "R": 0.5, "S": 0, "M": 0.3, "L": -0.2, "A": 0.4}
+        },
+        {
+          "key": "E",
+          "text": "Avoid the topic or change the subject.",
+          "vector": {"V": -0.4, "I": -0.3, "E": -0.5, "P": 0.4, "C": -0.4, "R": -0.5, "S": -0.3, "M": -0.3, "L": 0.5, "A": -0.4}
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "text": "You’re invited to a high-stakes competition. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prepare meticulously and follow a clear strategy.",
+          "vector": {"V": 0, "I": -0.1, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Thrive on the excitement and take bold risks.",
+          "vector": {"V": 0.7, "I": 0.5, "E": 0.6, "P": -0.4, "C": 0.6, "R": 0.8, "S": 0, "M": 0.3, "L": -0.4, "A": 0.5}
+        },
+        {
+          "key": "C",
+          "text": "Seek support from your team and focus on collaboration.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.3, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Adapt your tactics as the competition progresses.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.2, "P": 0.3, "C": 0.5, "R": 0.3, "S": 0.1, "M": 0.3, "L": 0.1, "A": 0.7}
+        },
+        {
+          "key": "E",
+          "text": "Feel nervous and consider opting out.",
+          "vector": {"V": -0.5, "I": -0.4, "E": -0.6, "P": 0.3, "C": -0.4, "R": -0.7, "S": -0.3, "M": -0.4, "L": 0.5, "A": -0.5}
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "text": "Your role in a project is unclear. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Clarify roles and responsibilities immediately.",
+          "vector": {"V": 0, "I": -0.1, "E": -0.1, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Take initiative and fill the gaps as best you can.",
+          "vector": {"V": 0.6, "I": 0.5, "E": 0.4, "P": -0.3, "C": 0.5, "R": 0.5, "S": 0, "M": 0.3, "L": -0.4, "A": 0.4}
+        },
+        {
+          "key": "C",
+          "text": "Discuss with the team to define your best fit.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.4, "R": -0.4, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Adapt and learn on the go to fit into the role.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.2, "P": 0.3, "C": 0.4, "R": 0, "S": 0.2, "M": 0.3, "L": 0.2, "A": 0.6}
+        },
+        {
+          "key": "E",
+          "text": "Feel frustrated and hesitant to contribute fully.",
+          "vector": {"V": -0.5, "I": -0.5, "E": -0.6, "P": 0.3, "C": -0.3, "R": -0.6, "S": -0.3, "M": -0.4, "L": 0.4, "A": -0.5}
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "text": "You have to choose between depth or speed in a project. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prioritize depth for thoroughness and quality.",
+          "vector": {"V": 0, "I": -0.2, "E": -0.3, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Opt for speed to deliver quickly and adapt later.",
+          "vector": {"V": 0.6, "I": 0.5, "E": 0.5, "P": -0.4, "C": 0.5, "R": 0.6, "S": 0, "M": 0.3, "L": -0.4, "A": 0.5}
+        },
+        {
+          "key": "C",
+          "text": "Balance both by prioritizing key areas deeply.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.5, "C": 0.4, "R": 0.2, "S": 0.1, "M": 0.2, "L": 0.2, "A": 0.5}
+        },
+        {
+          "key": "D",
+          "text": "Consult with others to decide the best approach.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.3, "R": -0.2, "S": 0.8, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "E",
+          "text": "Feel conflicted and delay the decision.",
+          "vector": {"V": -0.4, "I": -0.3, "E": -0.4, "P": 0.4, "C": -0.3, "R": -0.5, "S": -0.2, "M": -0.3, "L": 0.5, "A": -0.4}
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+```json
+{
+  "questions": [
+    {
+      "id": 36,
+      "text": "A stranger asks you for help in a public place. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Offer help clearly and confidently.",
+          "vector": {"V": 0, "I": -0.1, "E": 0.2, "P": 0.8, "C": 0.1, "R": -0.1, "S": 0.5, "M": 0.3, "L": 0.7, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Help if it feels exciting or rewarding.",
+          "vector": {"V": 0.6, "I": 0.5, "E": 0.6, "P": -0.4, "C": 0.5, "R": 0.6, "S": 0.2, "M": 0.3, "L": -0.4, "A": 0.3}
+        },
+        {
+          "key": "C",
+          "text": "Listen carefully before deciding how to assist.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.7, "R": -0.3, "S": 0.8, "M": 0.6, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Assess the situation cautiously before acting.",
+          "vector": {"V": -0.2, "I": -0.3, "E": -0.2, "P": 0.6, "C": -0.1, "R": -0.4, "S": 0, "M": -0.1, "L": 0.7, "A": 0.2}
+        },
+        {
+          "key": "E",
+          "text": "Avoid involvement to stay safe.",
+          "vector": {"V": -0.5, "I": -0.6, "E": -0.7, "P": 0.4, "C": -0.4, "R": -0.7, "S": -0.5, "M": -0.4, "L": 0.5, "A": -0.5}
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "text": "You’re told to innovate in a field you barely know. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Research deeply before making any moves.",
+          "vector": {"V": 0, "I": -0.2, "E": -0.4, "P": 0.9, "C": -0.3, "R": -0.5, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Dive in creatively, learning as you go.",
+          "vector": {"V": 0.7, "I": 0.6, "E": 0.5, "P": -0.3, "C": 0.7, "R": 0.7, "S": 0, "M": 0.3, "L": -0.5, "A": 0.6}
+        },
+        {
+          "key": "C",
+          "text": "Partner with knowledgeable people for support.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.5, "R": -0.4, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Adapt your approach gradually, testing ideas carefully.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.4, "C": 0.5, "R": 0, "S": 0.1, "M": 0.2, "L": 0.2, "A": 0.7}
+        },
+        {
+          "key": "E",
+          "text": "Feel hesitant and prefer not to take risks.",
+          "vector": {"V": -0.6, "I": -0.5, "E": -0.6, "P": 0.5, "C": -0.4, "R": -0.8, "S": -0.3, "M": -0.4, "L": 0.6, "A": -0.6}
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "text": "Your team wants to try something you think might fail. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Objectively analyze risks and advise caution.",
+          "vector": {"V": 0, "I": -0.1, "E": -0.3, "P": 0.9, "C": -0.2, "R": -0.6, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Encourage bold experimentation and learning from failure.",
+          "vector": {"V": 0.6, "I": 0.5, "E": 0.6, "P": -0.3, "C": 0.6, "R": 0.7, "S": 0.1, "M": 0.3, "L": -0.5, "A": 0.5}
+        },
+        {
+          "key": "C",
+          "text": "Facilitate discussion to find compromise or alternatives.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.4, "R": -0.4, "S": 0.8, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Suggest adapting the plan to reduce risk but keep innovation.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.4, "C": 0.4, "R": -0.2, "S": 0.2, "M": 0.3, "L": 0.2, "A": 0.6}
+        },
+        {
+          "key": "E",
+          "text": "Avoid involvement or oppose the plan outright.",
+          "vector": {"V": -0.5, "I": -0.4, "E": -0.5, "P": 0.4, "C": -0.4, "R": -0.7, "S": -0.3, "M": -0.3, "L": 0.5, "A": -0.5}
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "text": "You’re invited to collaborate with someone you admire but have never met. You…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Prepare carefully to make a strong first impression.",
+          "vector": {"V": 0, "I": -0.1, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Feel excited and jump in enthusiastically.",
+          "vector": {"V": 0.7, "I": 0.5, "E": 0.7, "P": -0.4, "C": 0.6, "R": 0.7, "S": 0.1, "M": 0.3, "L": -0.5, "A": 0.5}
+        },
+        {
+          "key": "C",
+          "text": "Reach out and build rapport first.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.5, "R": -0.3, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Approach with a flexible plan and adapt as needed.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.1, "P": 0.4, "C": 0.5, "R": 0, "S": 0.2, "M": 0.3, "L": 0.2, "A": 0.6}
+        },
+        {
+          "key": "E",
+          "text": "Feel hesitant or intimidated and hold back.",
+          "vector": {"V": -0.6, "I": -0.5, "E": -0.6, "P": 0.5, "C": -0.4, "R": -0.8, "S": -0.3, "M": -0.4, "L": 0.6, "A": -0.6}
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "text": "You finish a major project. Your next move is…",
+      "options": [
+        {
+          "key": "A",
+          "text": "Review everything thoroughly and plan the next steps.",
+          "vector": {"V": 0, "I": -0.1, "E": -0.2, "P": 0.9, "C": -0.3, "R": -0.3, "S": 0, "M": 0, "L": 0.8, "A": 0}
+        },
+        {
+          "key": "B",
+          "text": "Celebrate and start brainstorming new ideas immediately.",
+          "vector": {"V": 0.7, "I": 0.6, "E": 0.5, "P": -0.4, "C": 0.7, "R": 0.6, "S": 0, "M": 0.3, "L": -0.5, "A": 0.4}
+        },
+        {
+          "key": "C",
+          "text": "Connect with your team and share lessons learned.",
+          "vector": {"V": 0, "I": 0, "E": 0, "P": 0, "C": 0.4, "R": -0.3, "S": 0.9, "M": 0.7, "L": 0, "A": 0}
+        },
+        {
+          "key": "D",
+          "text": "Take a break to recharge before jumping into something new.",
+          "vector": {"V": -0.2, "I": -0.3, "E": -0.4, "P": 0.5, "C": -0.2, "R": -0.4, "S": -0.1, "M": -0.2, "L": 0.4, "A": -0.3}
+        },
+        {
+          "key": "E",
+          "text": "Immediately seek feedback to improve and iterate fast.",
+          "vector": {"V": 0.3, "I": 0.2, "E": 0.3, "P": 0.6, "C": 0.5, "R": 0.4, "S": 0.1, "M": 0.3, "L": 0.3, "A": 0.5}
+        }
+      ]
+    }
+  ]
+}
+
+```

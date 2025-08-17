@@ -1,0 +1,5 @@
+Metadata-Version: 2.4
+Name: humanity-core
+Version: 0.1.0
+Summary: Core scoring and reporting for the HUMANITY archetype quiz
+Requires-Python: >=3.9

@@ -1,0 +1,12 @@
+[project]
+name = "humanity-core"
+version = "0.1.0"
+description = "Core scoring and reporting for the HUMANITY archetype quiz"
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+redis = ["redis>=5.0.0"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

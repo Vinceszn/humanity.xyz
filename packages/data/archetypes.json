@@ -1,0 +1,54 @@
+{
+  "archetypes": [
+    {
+      "letter": "V",
+      "name": "Visionary",
+      "notes": "Big-picture leader; inspiring but can control too much"
+    },
+    {
+      "letter": "I",
+      "name": "Dreamer",
+      "notes": "Hopeful and imaginative; risks being unrealistic"
+    },
+    {
+      "letter": "E",
+      "name": "Architect",
+      "notes": "Flexible planner and builder; may resist chaos"
+    },
+    {
+      "letter": "P",
+      "name": "Catalyst",
+      "notes": "Energetic team player; can overlook details"
+    },
+    {
+      "letter": "C",
+      "name": "Realist",
+      "notes": "Practical and steady; wary of change"
+    },
+    {
+      "letter": "R",
+      "name": "Maverick",
+      "notes": "Fearless risk-taker; sometimes reckless"
+    },
+    {
+      "letter": "S",
+      "name": "Connector",
+      "notes": "Emotionally intelligent; avoids conflict"
+    },
+    {
+      "letter": "M",
+      "name": "Sage",
+      "notes": "Analytical and wise; may resist intuition"
+    },
+    {
+      "letter": "L",
+      "name": "Builder",
+      "notes": "Purpose-driven pioneer; can be impulsive"
+    },
+    {
+      "letter": "A",
+      "name": "Harmonizer",
+      "notes": "Diplomatic peacemaker; conflict-averse"
+    }
+  ]
+}

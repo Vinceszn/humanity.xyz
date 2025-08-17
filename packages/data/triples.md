@@ -1,0 +1,124 @@
+# Archetype Triples
+
+| ID | Triple (Archetypes) | Profile Name | Class |
+| --- | --- | --- | --- |
+| 1 | Visionary + Builder + Maverick | The Bold Pioneer | Strongly Harmonious |
+| 2 | Visionary + Builder + Sage | The Strategic Architect | Harmonious with Nuance |
+| 3 | Visionary + Builder + Connector | The Charismatic Maker | Strongly Harmonious |
+| 4 | Visionary + Builder + Catalyst | The Dynamo Innovator | Strongly Harmonious |
+| 5 | Visionary + Builder + Dreamer | The Inspired Creator | Harmonious with Nuance |
+| 6 | Visionary + Builder + Architect | The Master Planner | Strongly Harmonious |
+| 7 | Visionary + Builder + Realist | The Grounded Visionary | Harmonious with Nuance |
+| 8 | Visionary + Builder + Harmonizer | The Collaborative Creator | Mildly Harmonious |
+| 9 | Visionary + Maverick + Catalyst | The Revolutionary Leader | Strongly Harmonious |
+| 10 | Visionary + Maverick + Dreamer | The Fearless Idealist | Strongly Harmonious |
+| 11 | Visionary + Maverick + Sage | The Calculated Rebel | Paradoxical with Potential |
+| 12 | Visionary + Maverick + Connector | The Magnetic Nonconformist | Mildly Paradoxical |
+| 13 | Visionary + Maverick + Architect | The Tactical Disruptor | Paradoxical with Potential |
+| 14 | Visionary + Maverick + Realist | The Pragmatic Rebel | Mildly Paradoxical |
+| 15 | Visionary + Maverick + Harmonizer | The Diplomatic Rebel | Mildly Paradoxical |
+| 16 | Builder + Maverick + Connector | The Relentless Influencer | Strongly Harmonious |
+| 17 | Builder + Maverick + Catalyst | The Unstoppable Force | Strongly Harmonious |
+| 18 | Builder + Maverick + Dreamer | The Visionary Rebel | Strongly Harmonious |
+| 19 | Builder + Maverick + Sage | The Calculated Builder | Harmonious with Nuance |
+| 20 | Builder + Maverick + Connector | The Influential Rebel | Mildly Harmonious |
+| 21 | Builder + Maverick + Architect | The Structured Disruptor | Paradoxical with Potential |
+| 22 | Builder + Maverick + Realist | The Grounded Rebel | Mildly Harmonious |
+| 23 | Builder + Maverick + Harmonizer | The Diplomatic Maverick | Mildly Paradoxical |
+| 24 | Builder + Connector + Catalyst | The Empathic Achiever | Strongly Harmonious |
+| 25 | Builder + Connector + Dreamer | The Idealistic Creator | Harmonious with Nuance |
+| 26 | Builder + Connector + Sage | The Thoughtful Builder | Harmonious with Nuance |
+| 27 | Builder + Connector + Architect | The Collaborative Organizer | Strongly Harmonious |
+| 28 | Builder + Connector + Realist | The Practical Collaborator | Mildly Harmonious |
+| 29 | Builder + Connector + Harmonizer | The Supportive Creator | Strongly Harmonious |
+| 30 | Builder + Catalyst + Dreamer | The Visionary Energizer | Strongly Harmonious |
+| 31 | Visionary + Dreamer + Connector | The Inspirational Bridge | Harmonious with Nuance |
+| 32 | Visionary + Dreamer + Sage | The Philosophical Futurist | Harmonious with Nuance |
+| 33 | Visionary + Dreamer + Architect | The Blueprints of Tomorrow | Mildly Harmonious |
+| 34 | Visionary + Catalyst + Connector | The Movement Founder | Strongly Harmonious |
+| 35 | Visionary + Catalyst + Sage | The Illuminated Reformer | Harmonious with Nuance |
+| 36 | Visionary + Catalyst + Harmonizer | The Diplomatic Visionary | Mildly Harmonious |
+| 37 | Visionary + Sage + Architect | The Strategic Sage | Strongly Harmonious |
+| 38 | Visionary + Sage + Realist | The Pragmatic Visionary | Harmonious with Nuance |
+| 39 | Dreamer + Sage + Connector | The Reflective Empath | Harmonious with Nuance |
+| 40 | Dreamer + Architect + Connector | The Heartful Designer | Neutral (Null Set) |
+| 41 | Dreamer + Architect + Sage | The Thoughtful Vision-Maker | Mildly Harmonious |
+| 42 | Dreamer + Realist + Connector | The Compassionate Pragmatist | Neutral (Null Set) |
+| 43 | Architect + Sage + Connector | The Wise Facilitator | Harmonious with Nuance |
+| 44 | Architect + Sage + Harmonizer | The Balanced Strategist | Neutral (Null Set) |
+| 45 | Architect + Realist + Sage | The Technical Pragmatist | Strongly Harmonious |
+| 46 | Realist + Sage + Connector | The Grounded Sage | Neutral (Null Set) |
+| 47 | Realist + Harmonizer + Connector | The Community Steward | Mildly Harmonious |
+| 48 | Maverick + Sage + Harmonizer | The Tactful Iconoclast | Paradoxical with Potential |
+| 49 | Maverick + Sage + Realist | The Calculated Contrarian | Mildly Paradoxical |
+| 50 | Catalyst + Harmonizer + Connector | The Community Energizer | Strongly Harmonious |
+| 51 | Catalyst + Harmonizer + Architect | The Collaborative Innovator | Harmonious with Nuance |
+| 52 | Catalyst + Harmonizer + Realist | The Practical Connector | Mildly Harmonious |
+| 53 | Catalyst + Connector + Builder | The Energized Creator | Strongly Harmonious |
+| 54 | Catalyst + Connector + Sage | The Visionary Communicator | Harmonious with Nuance |
+| 55 | Catalyst + Connector + Realist | The Grounded Motivator | Neutral (Null Set) |
+| 56 | Catalyst + Builder + Harmonizer | The Purposeful Harmonizer | Mildly Harmonious |
+| 57 | Catalyst + Builder + Realist | The Pragmatic Trailblazer | Mildly Paradoxical |
+| 58 | Connector + Builder + Harmonizer | The Compassionate Producer | Strongly Harmonious |
+| 59 | Connector + Builder + Realist | The Practical Nurturer | Mildly Harmonious |
+| 60 | Connector + Builder + Sage | The Thoughtful Craftsman | Harmonious with Nuance |
+| 61 | Connector + Harmonizer + Realist | The Balanced Caretaker | Strongly Harmonious |
+| 62 | Builder + Harmonizer + Sage | The Strategic Maker | Harmonious with Nuance |
+| 63 | Builder + Harmonizer + Realist | The Practical Organizer | Strongly Harmonious |
+| 64 | Builder + Realist + Sage | The Methodical Achiever | Strongly Harmonious |
+| 65 | Dreamer + Catalyst + Builder | The Passionate Creator | Mildly Paradoxical |
+| 66 | Dreamer + Catalyst + Realist | The Grounded Dreamer | Neutral (Null Set) |
+| 67 | Dreamer + Connector + Harmonizer | The Empathic Idealist | Strongly Harmonious |
+| 68 | Dreamer + Connector + Builder | The Inspired Producer | Harmonious with Nuance |
+| 69 | Dreamer + Connector + Realist | The Realistic Visionary | Neutral (Null Set) |
+| 70 | Dreamer + Architect + Harmonizer | The Gentle Innovator | Mildly Harmonious |
+| 71 | Dreamer + Architect + Builder | The Visionary Maker | Harmonious with Nuance |
+| 72 | Dreamer + Architect + Realist | The Pragmatic Visionary | Neutral (Null Set) |
+| 73 | Dreamer + Architect + Sage | The Reflective Creator | Mildly Harmonious |
+| 74 | Dreamer + Builder + Harmonizer | The Passionate Peacemaker | Strongly Harmonious |
+| 75 | Dreamer + Builder + Sage | The Analytical Visionary | Harmonious with Nuance |
+| 76 | Dreamer + Builder + Realist | The Practical Dreamer | Neutral (Null Set) |
+| 77 | Dreamer + Harmonizer + Sage | The Compassionate Intellectual | Mildly Harmonious |
+| 78 | Dreamer + Harmonizer + Realist | The Grounded Idealist | Strongly Harmonious |
+| 79 | Architect + Builder + Harmonizer | The Structured Collaborator | Strongly Harmonious |
+| 80 | Architect + Builder + Sage | The Strategic Craftsman | Strongly Harmonious |
+| 81 | Architect + Builder + Realist | The Practical Architect | Strongly Harmonious |
+| 82 | Architect + Harmonizer + Sage | The Diplomatic Strategist | Harmonious with Nuance |
+| 83 | Architect + Harmonizer + Realist | The Grounded Organizer | Strongly Harmonious |
+| 84 | Builder + Harmonizer + Sage | The Reflective Producer | Harmonious with Nuance |
+| 85 | Builder + Harmonizer + Realist | The Balanced Executor | Strongly Harmonious |
+| 86 | Builder + Realist + Sage | The Methodical Maker | Strongly Harmonious |
+| 87 | Catalyst + Dreamer + Architect | The Imaginative Innovator | Mildly Paradoxical |
+| 88 | Catalyst + Dreamer + Builder | The Energetic Visionary | Mildly Paradoxical |
+| 89 | Catalyst + Dreamer + Realist | The Practical Visionary | Neutral (Null Set) |
+| 90 | Catalyst + Dreamer + Sage | The Reflective Visionary | Harmonious with Nuance |
+| 91 | Catalyst + Architect + Sage | The Systemic Reformer | Harmonious with Nuance |
+| 92 | Catalyst + Architect + Realist | The Practical Reformer | Mildly Harmonious |
+| 93 | Catalyst + Architect + Builder | The Tactical Builder | Strongly Harmonious |
+| 94 | Catalyst + Architect + Connector | The Networked Planner | Harmonious with Nuance |
+| 95 | Maverick + Connector + Harmonizer | The Rebellious Mediator | Mildly Paradoxical |
+| 96 | Maverick + Connector + Realist | The Pragmatic Nonconformist | Mildly Paradoxical |
+| 97 | Maverick + Connector + Builder | The Independent Collaborator | Mildly Harmonious |
+| 98 | Maverick + Connector + Sage | The Maverick Scholar | Paradoxical with Potential |
+| 99 | Maverick + Architect + Harmonizer | The Tactical Iconoclast | Paradoxical with Potential |
+| 100 | Maverick + Architect + Realist | The Calculated Insurgent | Mildly Paradoxical |
+| 101 | Maverick + Architect + Sage | The Strategic Contrarian | Paradoxical with Potential |
+| 102 | Visionary + Harmonizer + Sage | The Gentle Futurist | Mildly Harmonious |
+| 103 | Visionary + Harmonizer + Realist | The Balanced Futurist | Harmonious with Nuance |
+| 104 | Dreamer + Sage + Harmonizer | The Empathic Philosopher | Mildly Harmonious |
+| 105 | Dreamer + Harmonizer + Architect | The Gentle Designer | Mildly Harmonious |
+| 106 | Sage + Harmonizer + Realist | The Tempered Advisor | Neutral (Null Set) |
+| 107 | Sage + Harmonizer + Builder | The Thoughtful Steward | Harmonious with Nuance |
+| 108 | Catalyst + Maverick + Harmonizer | The Charismatic Maverick | Mildly Paradoxical |
+| 109 | Catalyst + Maverick + Realist | The Calculated Firebrand | Paradoxical with Potential |
+| 110 | Connector + Harmonizer + Dreamer | The Heartful Visionary | Strongly Harmonious |
+| 111 | Connector + Harmonizer + Builder | The Compassionate Producer | Strongly Harmonious |
+| 112 | Connector + Harmonizer + Realist | The Balanced Caretaker | Strongly Harmonious |
+| 113 | Builder + Harmonizer + Sage | The Strategic Maker | Harmonious with Nuance |
+| 114 | Builder + Harmonizer + Realist | The Practical Organizer | Strongly Harmonious |
+| 115 | Builder + Realist + Sage | The Methodical Achiever | Strongly Harmonious |
+| 116 | Dreamer + Catalyst + Builder | The Passionate Creator | Mildly Paradoxical |
+| 117 | Dreamer + Catalyst + Realist | The Grounded Dreamer | Neutral (Null Set) |
+| 118 | Dreamer + Connector + Harmonizer | The Empathic Idealist | Strongly Harmonious |
+| 119 | Dreamer + Connector + Builder | The Inspired Producer | Harmonious with Nuance |
+| 120 | Dreamer + Connector + Realist | The Realistic Visionary | Neutral (Null Set) |

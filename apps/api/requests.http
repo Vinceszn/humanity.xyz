@@ -1,0 +1,36 @@
+### HUMANITY API sample requests (use with VS Code REST Client or similar)
+
+@base = http://127.0.0.1:8000
+
+### Health
+GET {{base}}/health
+
+### Data: questions
+GET {{base}}/data/questions
+
+### Data: archetypes
+GET {{base}}/data/archetypes
+
+### Data: doubles
+GET {{base}}/data/doubles
+
+### Data: triples
+GET {{base}}/data/triples
+
+### Score sample
+POST {{base}}/score
+Content-Type: application/json
+
+{
+  "answers": { "1": "A", "2": "A", "3": "A" }
+}
+
+### Report sample
+POST {{base}}/report
+Content-Type: application/json
+
+{
+  "title": "Sample Report",
+  "answers": { "1": "A", "2": "A", "3": "A" }
+}
+

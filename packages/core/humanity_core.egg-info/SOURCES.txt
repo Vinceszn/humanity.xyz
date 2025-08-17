@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+humanity_core/__init__.py
+humanity_core/api.py
+humanity_core/report.py
+humanity_core/scoring.py
+humanity_core.egg-info/PKG-INFO
+humanity_core.egg-info/SOURCES.txt
+humanity_core.egg-info/dependency_links.txt
+humanity_core.egg-info/top_level.txt
+tests/test_api_roundtrip.py
