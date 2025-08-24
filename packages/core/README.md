@@ -84,7 +84,6 @@ Current protections:
 - Per-question timing capture with anomaly flags: average time, ultra_fast, uniform_timings stored alongside results.
 - Background cleanup task purges expired sessions and results older than retention window (default 30 days).
 
-
 Environment variables:
 
 - `HUMANITY_SIGNING_SECRET` – HMAC key (must be set to a non-default value; enforced at startup).

@@ -1,9 +1,15 @@
+@import './design.css';
+
 /* Brand font: Audiowide via next/font */
 .font-audiowide { font-family: var(--font-audiowide), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global CTA classes derived from landing page */
+.btn-primary { @apply inline-flex items-center justify-center rounded-2xl px-6 py-3 font-bold text-white; background: linear-gradient(90deg, #4F46E5, #8B5CF6); box-shadow: 0 12px 30px rgba(79,70,229,0.18); }
+.btn-ghost { @apply inline-flex items-center justify-center rounded-2xl px-6 py-3 border border-white/40 bg-white/10 backdrop-blur-md text-white; }
 
 /* Global typography and smoothing */
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }

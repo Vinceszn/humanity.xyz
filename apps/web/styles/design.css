@@ -1,0 +1,87 @@
+/* Design tokens and utilities derived from landing page
+   - Central brand palette
+   - Common radii, shadows, and small helpers
+*/
+:root{
+  --brand-default: #4F46E5;
+  --brand-600: #4F46E5;
+  --brand-400: #7C3AED;
+  --accent-default: #8B5CF6;
+  --glass-bg: rgba(255,255,255,0.08);
+  --card-radius: 1rem;
+  --card-radius-xl: 1.5rem;
+  --soft-shadow: 0 10px 30px rgba(16,24,40,0.08), 0 4px 8px rgba(16,24,40,0.04);
+}
+
+/* Small helpers used across components */
+.brand-gradient {
+  background: linear-gradient(90deg, var(--brand-600), var(--accent-default));
+}
+
+.card {
+  border-radius: var(--card-radius);
+  box-shadow: var(--soft-shadow);
+  background: white;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(6px);
+}
+
+.rounded-2xl-custom { border-radius: var(--card-radius-xl); }
+
+/* Normalize CTA button styles from landing page */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding-bottom: 0.75rem;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(90deg, #4F46E5, #8B5CF6);
+  box-shadow: 0 12px 30px rgba(79,70,229,0.18);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(6px);
+  color: #fff;
+}
+
+/* Per-archetype accent helpers */
+.accent-pink { --archetype: #F1948A; }
+.accent-pink-bg { background: linear-gradient(90deg, rgba(241,148,138,0.08), rgba(241,148,138,0.04)); }
+
+/* Archetype page typography adjustments */
+.archetype-page h1,
+.archetype-page h2,
+.archetype-page h3,
+.archetype-page h4 {
+  font-family: var(--font-audiowide), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing: 0.5px;
+}

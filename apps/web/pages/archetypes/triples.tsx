@@ -1,7 +1,7 @@
 import Head from 'next/head';
 export default function TriplesPage() {
   return (
-    <div className="max-w-2xl mx-auto py-12 px-4">
+    <div className="archetype-page max-w-2xl mx-auto py-12 px-4">
       <Head>
         <title>Triples | HUMANITY</title>
         <meta name="description" content="Explore archetype triples." />

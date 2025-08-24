@@ -16,7 +16,7 @@ const ARCHETYPES = [
 
 export default function ArchetypesHub() {
   return (
-    <div className="max-w-3xl mx-auto py-12 px-4">
+    <div className="archetype-page max-w-3xl mx-auto py-12 px-4">
       <Head>
         <title>Archetypes | HUMANITY</title>
         <meta name="description" content="Explore the core archetypes, doubles, and triples." />
