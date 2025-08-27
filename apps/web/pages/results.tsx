@@ -3,12 +3,7 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 
-// Dynamically import D3 components to avoid SSR issues
-const RadarChart = dynamic(() => import('../components/RadarChart'), { ssr: false });
-const DonutChart = dynamic(() => import('../components/DonutChart'), { ssr: false });
-const HeatmapChart = dynamic(() => import('../components/HeatmapChart'), { ssr: false });
-const ArchetypeCard = dynamic(() => import('../components/ArchetypeCard'), { ssr: false });
-
+// Types used by dynamic components
 interface RankedItemUI {
   archetype: string;
   letter: string;
@@ -24,6 +19,29 @@ interface ResultsProps {
   ranking?: Array<{ letter: string; score: number }>;
   report_markdown?: string;
 }
+
+// Dynamically import richer ECharts components to avoid SSR issues
+const RadarChart = dynamic(
+  () => import('@components/BetterRadarChart').then(m => m.default),
+  { ssr: false }
+) as React.ComponentType<{ data: RankedItemUI[] }>;
+const DonutChart = dynamic(
+  () => import('@components/BetterDonutChart').then(m => m.default),
+  { ssr: false }
+) as React.ComponentType<{ overallScore: number; topArchetype: string }>;
+const HeatmapChart = dynamic(
+  () => import('@components/BetterHeatmapChart').then(m => m.default),
+  { ssr: false }
+) as React.ComponentType<{ data: RankedItemUI[] }>;
+const ResultsTable = dynamic(
+  () => import('@components/BetterResultsTable').then(m => m.default),
+  { ssr: false }
+) as React.ComponentType<{ data: RankedItemUI[] }>;
+const BarChart = dynamic(
+  () => import('@components/BetterBarChart').then(m => m.default),
+  { ssr: false }
+) as React.ComponentType<{ data: RankedItemUI[] }>;
+const ArchetypeCard = dynamic(() => import('@components/ArchetypeCard'), { ssr: false });
 
 // Lightweight skeleton loader mimicking the final layout to improve perceived performance
 function ResultsSkeleton() {
@@ -89,6 +107,48 @@ export default function Results() {
   const [error, setError] = useState<string | null>(null);
   // Hooks must be declared unconditionally at the top level (before any early returns)
   const [activeTab, setActiveTab] = useState('overview');
+  
+  // Lightweight insight generator for deeper content
+  const getDeepInsights = (name: string, score: number) => {
+    const level = score >= 80 ? 'very strong' : score >= 60 ? 'strong' : 'emerging';
+    return {
+      why: `You show ${level} alignment with the ${name} archetype, indicating this is a natural lens you use to interpret and shape situations.`,
+      best: `${name}s are at their best when they can lean into their core strengths without overextending. Look for contexts where this style is valued and visible.`,
+      watch: `Be mindful of over-indexing on ${name} tendencies. Balance them with complementary archetypes in your top 3 to avoid blind spots.`,
+      try: `Pick one decision this week and deliberately apply your ${name} strengths. Then, invite feedback from someone who embodies a different style to round it out.`,
+    };
+  };
+  
+  // Simple actions
+  const handleShare = () => {
+    try {
+      const url = typeof window !== 'undefined' ? window.location.href : '';
+      if ((navigator as any).share) {
+        (navigator as any).share({ title: 'My HUMANITY Results', url });
+      } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url);
+        // Optional: lightweight confirmation; avoid blocking alert in some browsers
+      }
+    } catch {}
+  };
+  const handleCopyLink = () => {
+    try { const url = typeof window !== 'undefined' ? window.location.href : ''; navigator.clipboard?.writeText(url); } catch {}
+  };
+  const handleDownload = () => {
+    try {
+      const data = results || {};
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `humanity-results-${Date.now()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch {}
+  };
+  const handlePrint = () => { try { window.print(); } catch {} };
 
   useEffect(() => {
     const load = async () => {
@@ -109,37 +169,56 @@ export default function Results() {
               } catch {}
             }
         }
-        if (!resultId || !sig) {
+        const API_BASE = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE || 'http://127.0.0.1:8000';
+        // Path A: if we have resultId+token and a live API supports it
+        let serverData: any = null;
+        if (resultId && sig) {
+          try {
+            const resp = await fetch(`${API_BASE}/results/${resultId}?token=${encodeURIComponent(sig)}`);
+            if (resp.ok) {
+              serverData = await resp.json();
+            }
+          } catch {}
+        }
+        // Path B: fall back to stateless stored payload
+        if (!serverData) {
+          try {
+            const localRaw = typeof window !== 'undefined' ? sessionStorage.getItem('resultsPayload') : null;
+            if (localRaw) serverData = JSON.parse(localRaw);
+          } catch {}
+        }
+        if (!serverData) {
           setError('No result reference found. Redirecting to quiz...');
           setTimeout(() => router.replace('/quiz'), 1500);
           return;
         }
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE || 'http://127.0.0.1:8000';
-        const resp = await fetch(`${API_BASE}/results/${resultId}?token=${encodeURIComponent(sig)}`);
-        if (!resp.ok) {
-          setError('Failed to fetch results. Please retake the quiz.');
-          setTimeout(() => router.replace('/quiz'), 2000);
-          return;
-        }
-  const serverData = await resp.json();
-        // Enrich ranking -> ranked
+        // Build ranked list from either enriched 'ranked' (preferred) or raw 'ranking' + archetype lookup
         let ranked: RankedItemUI[] = [];
-        try {
-          const arcsResp = await fetch(`${API_BASE}/data/archetypes`).then(r => r.ok ? r.json() : Promise.reject(r.statusText));
-          const archetypes = (arcsResp.archetypes || []) as Array<{ letter?: string; code?: string; name?: string; archetype?: string; description?: string }>;
-          const byLetter: Record<string, { name: string; description: string }> = {};
-          archetypes.forEach(a => {
-            const letter = (a.letter || a.code || a.archetype || '').toString();
-            if (letter) byLetter[letter] = { name: (a.name || a.archetype || letter), description: a.description || '' };
-          });
-          ranked = (serverData.ranking || []).map((r: any) => ({
+        if (Array.isArray(serverData.ranked) && serverData.ranked.length) {
+          ranked = serverData.ranked.map((r: any) => ({
             letter: r.letter,
-            score: r.score,
-            archetype: byLetter[r.letter]?.name || r.letter,
-            description: byLetter[r.letter]?.description || ''
+            score: typeof r.score === 'number' ? r.score : Number(r.score) || 0,
+            archetype: r.archetype || r.letter,
+            description: r.description || '',
           }));
-        } catch {
-          ranked = (serverData.ranking || []).map((r: any) => ({ letter: r.letter, score: r.score, archetype: r.letter, description: '' }));
+        } else {
+          try {
+            const arcsResp = await fetch(`${API_BASE}/data/archetypes`).then(r => r.ok ? r.json() : Promise.reject(r.statusText));
+            const archetypes = (arcsResp.archetypes || []) as Array<{ letter?: string; code?: string; name?: string; archetype?: string; description?: string }>;
+            const byLetter: Record<string, { name: string; description: string }> = {};
+            archetypes.forEach(a => {
+              const letter = (a.letter || a.code || a.archetype || '').toString();
+              if (letter) byLetter[letter] = { name: (a.name || a.archetype || letter), description: a.description || '' };
+            });
+            ranked = (serverData.ranking || []).map((r: any) => ({
+              letter: r.letter,
+              score: r.score,
+              archetype: byLetter[r.letter]?.name || r.letter,
+              description: byLetter[r.letter]?.description || ''
+            }));
+          } catch {
+            ranked = (serverData.ranking || []).map((r: any) => ({ letter: r.letter, score: r.score, archetype: r.letter, description: '' }));
+          }
         }
         if (!ranked.length) {
           setError('Results data incomplete. Please retake the quiz.');
@@ -148,7 +227,7 @@ export default function Results() {
         }
         const merged: ResultsProps = { 
           ranked, 
-          ranking: serverData.ranking, 
+          ranking: serverData.ranking,
           report_markdown: serverData.report_markdown,
           top2_profile: serverData.top2_profile,
           top3_profile: serverData.top3_profile,
@@ -195,15 +274,23 @@ export default function Results() {
     : 0;
 
   const tabs = [
-    { id: 'overview', label: '🎯 Overview', icon: '🎯' },
-    { id: 'radar', label: '📊 Personality Map', icon: '📊' },
-    { id: 'heatmap', label: '🔥 Contextual Analysis', icon: '🔥' },
-  { id: 'details', label: '📋 Detailed Breakdown', icon: '📋' },
-  ...(results.report_markdown ? [{ id: 'report', label: '📝 Full Report', icon: '📝' }] : [])
+  { id: 'overview', label: 'Overview' },
+  { id: 'radar', label: 'Personality Map' },
+  { id: 'heatmap', label: 'Contextual Analysis' },
+  { id: 'bars', label: 'Score Bars' },
+  { id: 'details', label: 'Detailed Breakdown' },
   ];
 
   return (
-  <div className="min-h-screen flex flex-col">
+  <div className="min-h-screen flex flex-col relative overflow-hidden">
+      {/* Subtle animated background like quiz */}
+      <div className="absolute inset-0 pointer-events-none z-0" aria-hidden="true">
+        <div className="bg-loop h-full w-full">
+          <span className="blob blob-a"></span>
+          <span className="blob blob-b"></span>
+          <span className="blob blob-c"></span>
+        </div>
+      </div>
       <Head children={
         <>
           <title>Your HUMANITY Results</title>
@@ -212,22 +299,30 @@ export default function Results() {
         </>
       } />
 
-  <main className="w-full px-4 py-12 flex-1">
+  <main className="w-full px-4 sm:px-6 lg:px-8 py-10 sm:py-12 flex-1 max-w-7xl mx-auto relative z-10">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight mb-4">Your HUMANITY Results</h1>
-          <p className="text-lg text-gray-600 mx-auto">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight mb-3 sm:mb-4">Your HUMANITY Results</h1>
+          <p className="text-base sm:text-lg text-gray-700 mx-auto">
             Discover your unique personality archetype combination and explore how you interact with the world.
           </p>
+          {/* Action bar */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+            <button onClick={handleShare} className="px-4 py-2 rounded-full text-sm font-medium border bg-white/80 backdrop-blur hover:bg-white">Share</button>
+            <button onClick={handleCopyLink} className="px-4 py-2 rounded-full text-sm font-medium border bg-white/80 backdrop-blur hover:bg-white">Copy Link</button>
+            <button onClick={handleDownload} className="px-4 py-2 rounded-full text-sm font-medium border bg-white/80 backdrop-blur hover:bg-white">Download JSON</button>
+            <button onClick={handlePrint} className="px-4 py-2 rounded-full text-sm font-medium border bg-white/80 backdrop-blur hover:bg-white">Print</button>
+          </div>
         </div>
 
         {/* Tab Navigation */}
-  <div className="flex flex-wrap justify-center mb-8 bg-white rounded-full border p-2">
+  <div className="sticky top-0 z-40 mb-8 -mx-2 sm:mx-0">
+          <div className="bg-white/80 backdrop-blur border rounded-full p-2 flex items-center gap-1 overflow-x-auto whitespace-nowrap justify-start sm:justify-center px-2">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 mx-1 ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 mx-1 ${
                 activeTab === tab.id
           ? 'bg-gray-900 text-white shadow-sm'
           : 'text-gray-700 hover:bg-gray-50'
@@ -236,6 +331,7 @@ export default function Results() {
         {tab.label}
             </button>
           ))}
+          </div>
         </div>
 
         {/* Tab Content */}
@@ -305,7 +401,16 @@ export default function Results() {
             </div>
     <div className="text-center mt-8">
               <button
-                onClick={() => { sessionStorage.removeItem('quizResults'); router.replace('/quiz'); }}
+                onClick={() => {
+                  try {
+                    sessionStorage.removeItem('quizResults');
+                    sessionStorage.removeItem('quizProgress');
+                    sessionStorage.removeItem('resultsPayload');
+                    sessionStorage.removeItem('resultMeta');
+                    sessionStorage.removeItem('quizPendingReset');
+                  } catch {}
+                  router.replace('/quiz');
+                }}
         className="px-6 py-3 rounded-md font-medium border border-gray-300 hover:bg-gray-50"
               >
         Retake Quiz
@@ -336,32 +441,57 @@ export default function Results() {
           </div>
         )}
 
+        {activeTab === 'bars' && (
+          <div className="bg-white rounded-lg border shadow-sm p-8">
+            <h2 className="text-2xl font-semibold text-center mb-8">Scores by Archetype</h2>
+            <p className="text-center text-gray-600 mb-8 mx-auto">
+              A straightforward bar chart of your archetype scores for quick comparisons.
+            </p>
+            <BarChart data={results.ranked} />
+          </div>
+        )}
+
         {activeTab === 'details' && (
           <div className="space-y-8">
-            {/* Detailed Rankings */}
+            {/* Deep Dive for Top 3 */}
+            <div className="bg-white rounded-lg border shadow-sm p-8">
+              <h3 className="text-2xl font-semibold mb-2">Deep Dive: Your Top Archetypes</h3>
+              <p className="text-gray-600 mb-6">Practical insight on how your leading styles show up day-to-day.</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {results.ranked.slice(0, 3).map((r) => {
+                  const insight = getDeepInsights(r.archetype, r.score);
+                  return (
+                    <div key={r.letter} className="rounded-lg border bg-white/80 p-6">
+                      <h4 className="text-xl font-semibold mb-1">{r.archetype}</h4>
+                      <p className="text-sm text-gray-500 mb-4">Score: {Math.round(r.score)}</p>
+                      <ul className="space-y-3 text-gray-700 text-sm">
+                        <li>
+                          <span className="font-medium">Why this resonates:</span> {insight.why}
+                        </li>
+                        <li>
+                          <span className="font-medium">When it&apos;s at your best:</span> {insight.best}
+                        </li>
+                        <li>
+                          <span className="font-medium">Watch-outs:</span> {insight.watch}
+                        </li>
+                        <li>
+                          <span className="font-medium">Try this:</span> {insight.try}
+                        </li>
+                      </ul>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Detailed Rankings (interactive table) */}
             <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
               <div className="bg-gray-900 text-white p-6">
                 <h2 className="text-2xl font-semibold">Complete Archetype Breakdown</h2>
-                <p className="mt-2 opacity-80">Your complete personality profile ranked from strongest to weakest</p>
+                <p className="mt-2 opacity-80">Sortable table with visual scores</p>
               </div>
-              <div className="p-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {results.ranked.map((archetype, index) => {
-                    const { letter, ...props } = archetype;
-                    return (
-                      <div key={letter}>
-                        <ArchetypeCard
-                          archetype={props.archetype}
-                          letter={letter}
-                          score={props.score}
-                          description={props.description}
-                          isPrimary={index === 0}
-                          className="h-full"
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
+              <div className="p-2 sm:p-4">
+                <ResultsTable data={results.ranked} />
               </div>
             </div>
 
@@ -396,24 +526,7 @@ export default function Results() {
           </div>
         )}
 
-        {activeTab === 'report' && results.report_markdown && (
-          <div className="bg-white rounded-lg border shadow-sm p-6">
-            <div className="flex items-center justify-between mb-4 flex-wrap gap-4">
-              <h2 className="text-2xl font-semibold">Full Markdown Report</h2>
-              <button
-                onClick={() => {
-                  try { navigator.clipboard.writeText(results.report_markdown || ''); } catch {}
-                }}
-                className="px-4 py-2 text-sm rounded-md border font-medium bg-gray-50 hover:bg-gray-100"
-              >Copy Markdown</button>
-            </div>
-            <div className="prose max-w-none prose-sm sm:prose" style={{whiteSpace: 'pre-wrap'}}>
-              {results.report_markdown.split(/\n\n+/).map((block, i) => (
-                <p key={i} className="leading-relaxed">{block}</p>
-              ))}
-            </div>
-          </div>
-        )}
+  {/* Full report section removed per request */}
       </main>
     </div>
   );

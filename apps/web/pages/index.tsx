@@ -40,46 +40,50 @@ const Home: NextPage = () => {
       {/* Hero Section Carousel */}
   <section className="relative w-full min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden px-4">
         <HeroCarousel ref={heroCarouselRef} />
-  {/* Overlay removed for a clean, white, borderless look */}
+  {/* Mobile-first gradient overlay for legibility; softens on larger screens */}
+        <div
+          className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-black/60 via-black/40 to-transparent sm:from-black/40 md:from-transparent"
+          aria-hidden="true"
+        />
         
         {/* Navigation arrows for hero */}
         <button 
           onClick={handleHeroPrev}
-          className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 group"
+          className="hidden sm:flex absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full items-center justify-center text-white hover:bg-white/30 transition-all duration-300 group"
         >
-          <svg className="w-6 h-6 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
         
         <button 
           onClick={handleHeroNext}
-          className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-14 h-14 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 group"
+          className="hidden sm:flex absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full items-center justify-center text-white hover:bg-white/30 transition-all duration-300 group"
         >
-          <svg className="w-6 h-6 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
   <div className="absolute inset-0 flex flex-col items-center justify-center z-20 text-center px-4">
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tight text-white drop-shadow-2xl mb-8 animate-fade-in font-audiowide leading-tight">
+          <h1 className="text-3xl sm:text-6xl md:text-8xl font-extrabold tracking-tight text-white drop-shadow-2xl mb-6 sm:mb-8 animate-fade-in font-audiowide leading-tight">
             Discover your 
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
               HUMANITY
             </span>
             archetype
           </h1>
-          <p className="text-lg sm:text-xl md:text-3xl text-white/95 max-w-3xl md:max-w-4xl mx-auto mb-10 sm:mb-12 animate-fade-in delay-100 drop-shadow-lg leading-relaxed font-medium">
+          <p className="text-base sm:text-xl md:text-3xl text-white/95 max-w-3xl md:max-w-4xl mx-auto mb-8 sm:mb-12 animate-fade-in delay-100 drop-shadow-lg leading-relaxed font-medium">
             A visually engaging, research-informed assessment to reveal your dominant archetypes and how they influence decisions, collaboration, and growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-fade-in delay-200 w-full sm:w-auto">
-            <Link href="/quiz" className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 px-12 py-5 text-white text-xl font-bold shadow-2xl hover:scale-105 transition-all duration-300 font-audiowide tracking-wide">
+            <Link href="/quiz" className="inline-flex w-full sm:w-auto items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 px-8 sm:px-12 py-4 sm:py-5 text-white text-lg sm:text-xl font-bold shadow-2xl hover:scale-105 transition-all duration-300 font-audiowide tracking-wide">
               Start Assessment
-              <svg className="ml-3 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="ml-3 w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </Link>
-            <Link href="/about" className="inline-flex items-center justify-center rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-md px-12 py-5 text-xl font-bold text-white hover:bg-white/20 hover:border-white/60 transition-all duration-300 font-audiowide tracking-wide">
+            <Link href="/about" className="inline-flex w-full sm:w-auto items-center justify-center rounded-xl border-2 border-white/40 bg-white/10 backdrop-blur-md px-8 sm:px-12 py-4 sm:py-5 text-lg sm:text-xl font-bold text-white hover:bg-white/20 hover:border-white/60 transition-all duration-300 font-audiowide tracking-wide">
               Learn More
             </Link>
           </div>
@@ -97,45 +101,38 @@ const Home: NextPage = () => {
 
   {/* Animated TransformStack section replaces static benefits */}
   <LazyMount>
-    <TransformStack />
+    <section className="relative pb-28 md:pb-36 lg:pb-40">
+      <TransformStack />
+    </section>
   </LazyMount>
 
-        {/* How It Works Section */}
-  <section className="py-16 how-works">
-          <div className="rounded-xl border p-0 md:p-8 shadow-sm relative overflow-hidden">
-            {/* Background looping animation (CSS) */}
-            <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-              <div className="bg-loop h-full w-full">
-                <span className="blob blob-a"></span>
-                <span className="blob blob-b"></span>
-                <span className="blob blob-c"></span>
-              </div>
-            </div>
-            {/* Soft overlay for readability */}
-            <div className="absolute inset-0 bg-white/75 backdrop-blur-sm" aria-hidden="true" />
-            <div className="relative p-6 md:p-8">
-              <h2 className="text-2xl font-semibold tracking-tight">How it works</h2>
-              {/* Vertical progress line (desktop) */}
-              <svg className="hidden lg:block absolute left-6 top-8 h-[calc(100%-4rem)] w-8 overflow-visible pointer-events-none" aria-hidden="true">
-                <path className="how-line-path" d="M16 0 L16 1000" stroke="#E5E7EB" strokeWidth="3" strokeLinecap="round" fill="none" />
-              </svg>
-              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {[{
-                  step: '01', title: 'Take the quiz', desc: '10 minutes, high-signal questions.'
-                }, {
-                  step: '02', title: 'Get results', desc: 'Instant profile and clear language.'
-                }, {
-                  step: '03', title: 'Explore', desc: 'Learn about your archetypes and blends.'
-                }, {
-                  step: '04', title: 'Apply', desc: 'Use insights for growth and collaboration.'
-                }].map((s) => (
-                  <div key={s.step} className="rounded-lg border p-4 how-step bg-white/80 backdrop-blur-sm">
-                    <div className="text-xs font-medium text-gray-500">{s.step}</div>
-                    <div className="mt-2 font-semibold">{s.title}</div>
-                    <div className="mt-1 text-sm text-gray-600">{s.desc}</div>
+        {/* How It Works Section (static, polished, on-theme) */}
+        <section className="py-16 how-works">
+          <div className="rounded-2xl border bg-white shadow-sm p-6 md:p-10">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">How it works</h2>
+            <p className="mt-2 text-gray-600">Four simple steps to a clear, actionable profile.</p>
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {[{
+                step: '01', title: 'Take the quiz', desc: '10 minutes of focused, high-signal questions.'
+              }, {
+                step: '02', title: 'Get results', desc: 'Instant, readable profile across 10 archetypes.'
+              }, {
+                step: '03', title: 'Explore', desc: 'Understand blends (pairs/triples) and patterns.'
+              }, {
+                step: '04', title: 'Apply', desc: 'Use insights to improve decisions and collaboration.'
+              }].map((s) => (
+                <div key={s.step} className="rounded-xl border bg-white p-5">
+                  <div className="flex items-start gap-4">
+                    <div className="h-10 w-10 shrink-0 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white flex items-center justify-center font-bold">
+                      {s.step}
+                    </div>
+                    <div>
+                      <div className="font-semibold">{s.title}</div>
+                      <div className="mt-1 text-sm text-gray-600">{s.desc}</div>
+                    </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -151,26 +148,26 @@ const Home: NextPage = () => {
           </section>
         </LazyMount>
 
-        {/* FAQ Section */}
-        <section className="py-16 faq">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-semibold tracking-tight">FAQ</h2>
-            <div className="mt-6 divide-y border rounded-lg bg-white">
-              <details className="p-4 faq-item" open>
-                <summary className="font-semibold cursor-pointer">How accurate is the assessment?</summary>
-                <p className="mt-2 text-gray-600">It’s designed for clarity and reflection, not labels. Results are normalized and highlight tendencies across 10 archetypes.</p>
+        {/* FAQ Section (clean, static cards; accessible details) */}
+        <section className="py-10 faq">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-xl sm:text-2xl font-semibold tracking-tight">FAQ</h2>
+            <div className="mt-4 space-y-3">
+              <details className="rounded-lg border bg-white p-4">
+                <summary className="font-medium cursor-pointer select-none text-base">How accurate is the assessment?</summary>
+                <p className="mt-1 text-gray-600 text-sm">It’s designed for clarity and reflection, not labels. Results are normalized and highlight tendencies across 10 archetypes.</p>
               </details>
-              <details className="p-4 faq-item">
-                <summary className="font-semibold cursor-pointer">Can I retake it?</summary>
-                <p className="mt-2 text-gray-600">Yes. Retake to compare shifts over time or in new contexts.</p>
+              <details className="rounded-lg border bg-white p-4">
+                <summary className="font-medium cursor-pointer select-none text-base">Can I retake it?</summary>
+                <p className="mt-1 text-gray-600 text-sm">Yes. Retake to compare shifts over time or in new contexts.</p>
               </details>
-              <details className="p-4 faq-item">
-                <summary className="font-semibold cursor-pointer">Is my data private?</summary>
-                <p className="mt-2 text-gray-600">We only store the minimum necessary to generate results. You control your data and can clear results at any time.</p>
+              <details className="rounded-lg border bg-white p-4">
+                <summary className="font-medium cursor-pointer select-none text-base">Is my data private?</summary>
+                <p className="mt-1 text-gray-600 text-sm">We only store the minimum necessary to generate results. You control your data and can clear results at any time.</p>
               </details>
-              <details className="p-4 faq-item">
-                <summary className="font-semibold cursor-pointer">How are doubles and triples used?</summary>
-                <p className="mt-2 text-gray-600">They indicate strong blends. Use them for teaming, communication, and growth planning.</p>
+              <details className="rounded-lg border bg-white p-4">
+                <summary className="font-medium cursor-pointer select-none text-base">How are doubles and triples used?</summary>
+                <p className="mt-1 text-gray-600 text-sm">They indicate strong blends. Use them for teaming, communication, and growth planning.</p>
               </details>
             </div>
           </div>

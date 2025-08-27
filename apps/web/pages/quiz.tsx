@@ -44,65 +44,52 @@ const Home: NextPage<HomeProps> = ({ questions }) => {
     setSubmitError(null);
 
     try {
-      // Ensure we have a session (start if missing)
-      let sid = sessionId;
-      if (!sid) {
-        const startResp = await fetch(`${API_BASE}/quiz/start`, { method: 'POST' });
-        if (!startResp.ok) throw new Error('Failed to start session');
-        const startJson = await startResp.json();
-        sid = startJson.session_id;
-        setSessionId(sid);
-      }
-      // Submit answers via authoritative endpoint
-      const submitResp = await fetch(`${API_BASE}/quiz/submit`, {
+      // Stateless submission: score locally via API, then build markdown report
+      const scoreResp = await fetch(`${API_BASE}/score`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ session_id: sid, answers, timings }),
+        body: JSON.stringify({ answers }),
       });
-      if (!submitResp.ok) {
-        let friendly = 'Submission failed. Please try again.';
-        try {
-          const ct = submitResp.headers.get('content-type') || '';
-          const rawTxt = await submitResp.text();
-          if (ct.includes('application/json')) {
-            try {
-              const js = JSON.parse(rawTxt);
-              if (js.detail) {
-                const detail: string = js.detail;
-                if (/too fast/i.test(detail)) {
-                  friendly = 'Looks like the quiz was submitted unusually fast. Take a little more time with each question and resubmit.';
-                } else {
-                  friendly = detail;
-                }
-              }
-            } catch {
-              // fall back to raw text
-              if (rawTxt) friendly = rawTxt;
-            }
-          } else if (rawTxt) {
-            friendly = rawTxt;
-          }
-        } catch {}
+      if (!scoreResp.ok) {
+        let friendly = 'Scoring failed. Please try again.';
+        try { const txt = await scoreResp.text(); if (txt) friendly = txt; } catch {}
         throw new Error(friendly);
       }
-      const submitJson = await submitResp.json();
-      // Store only identifiers & token; results page will fetch securely
+      const scoreJson = await scoreResp.json();
+
+      // Attempt to build markdown report (non-fatal if it fails)
+      let reportMarkdown: string | undefined = undefined;
+      try {
+        const reportResp = await fetch(`${API_BASE}/report`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ answers, title: 'HUMANITY Archetype Report' }),
+        });
+        if (reportResp.ok) {
+          const reportJson = await reportResp.json();
+          reportMarkdown = reportJson.markdown;
+        }
+      } catch {}
+
+      // Persist results payload for results page
+      const resultsPayload = {
+        ranked: scoreJson.ranked,
+        top2_profile: scoreJson.top2_profile,
+        top3_profile: scoreJson.top3_profile,
+        report_markdown: reportMarkdown,
+      };
       try {
         if (typeof window !== 'undefined') {
-          sessionStorage.setItem('resultMeta', JSON.stringify(submitJson));
+          sessionStorage.setItem('resultsPayload', JSON.stringify(resultsPayload));
           sessionStorage.setItem('quizPendingReset', '1');
         }
       } catch {}
-      await router.replace(`/results?rid=${submitJson.result_id}&token=${encodeURIComponent(submitJson.token)}`);
+      await router.replace(`/results`);
     } catch (error) {
       console.error('Error submitting answers:', error);
       const msg = error instanceof Error ? error.message : 'An error occurred while submitting answers';
       setSubmitError(msg);
-      if (/unusually fast/i.test(msg)) {
-        setCanRetryAt(Date.now() + 4000); // enforce short pause before retry
-      } else {
-        setCanRetryAt(Date.now());
-      }
+      setCanRetryAt(Date.now());
     } finally {
       setIsSubmitting(false);
     }
@@ -189,8 +176,8 @@ const Home: NextPage<HomeProps> = ({ questions }) => {
         <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-  <main className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12 flex-1 relative z-10">
-        <h1 className="text-3xl font-semibold text-center mb-8 tracking-tight">HUMANITY Assessment</h1>
+  <main className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1 relative z-10">
+        <h1 className="text-2xl sm:text-3xl font-semibold text-center mb-6 sm:mb-8 tracking-tight">HUMANITY Assessment</h1>
 
         {/* Progress Bar */}
         <div className="max-w-2xl mx-auto mb-8">
@@ -202,8 +189,8 @@ const Home: NextPage<HomeProps> = ({ questions }) => {
               }}
             />
           </div>
-          <div className="text-xs text-gray-500 text-right mt-1">
-            {currentQuestion + 1} / {questions.length} answered
+          <div className="text-xs text-gray-600 text-right mt-1">
+            Question {currentQuestion + 1} of {questions.length}
           </div>
           {/* Visually hidden live region for screen readers */}
           <div className="sr-only" aria-live="polite" aria-atomic="true">{progressMsg}</div>
@@ -216,33 +203,33 @@ const Home: NextPage<HomeProps> = ({ questions }) => {
         )}
 
         {question && questions.length > 0 && (
-          <div className="max-w-2xl mx-auto bg-white rounded-lg border shadow-sm p-8">
+          <div className="max-w-2xl mx-auto bg-white/95 backdrop-blur rounded-2xl border shadow-lg p-5 sm:p-8">
             {restored && Object.keys(answers).length > 0 && (
               <div className="mb-4 flex items-center justify-between text-xs text-gray-600 bg-gray-50 border border-gray-200 rounded p-2" aria-live="polite">
                 <span>Progress restored.</span>
                 <button onClick={handleReset} className="underline hover:text-gray-900" type="button">Reset</button>
               </div>
             )}
-            <div className="mb-6">
-        <h2 className="text-xl md:text-2xl font-semibold mb-2">
+            <div className="mb-5 sm:mb-6">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold mb-1 sm:mb-2">
                 Question {currentQuestion + 1} of {questions.length}
               </h2>
-        <p className="text-lg md:text-xl text-gray-700">{question.text}</p>
+        <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed">{question.text}</p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {question.options.map((option) => (
                 <button
                   key={option.key}
                   onClick={() => handleAnswer(question.id, option.key)}
-          className={`w-full p-4 text-left rounded-md border shadow-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300 ${
+          className={`w-full p-4 sm:p-5 text-left rounded-xl border shadow-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300 ${
                     answers[question.id] === option.key
-            ? 'bg-gray-900 text-white border-gray-900'
-            : 'bg-white hover:bg-gray-50 border-gray-200'
+            ? 'bg-gradient-to-r from-gray-900 to-black text-white border-gray-900 shadow-md'
+            : 'bg-white/90 hover:bg-white border-gray-200'
                   }`}
                   aria-pressed={answers[question.id] === option.key}
                 >
-                  {option.text}
+                  <span className="block text-sm sm:text-base md:text-lg">{option.text}</span>
                 </button>
               ))}
             </div>
@@ -251,10 +238,10 @@ const Home: NextPage<HomeProps> = ({ questions }) => {
 
         {/* Confirmation before submit */}
         {currentQuestion === questions.length - 1 && !showConfirm && questions.length > 0 && (
-      <div className="max-w-2xl mx-auto mt-8 text-center">
+      <div className="max-w-2xl mx-auto mt-6 sm:mt-8 text-center px-2">
             <button
               onClick={() => setShowConfirm(true)}
-        className="w-full py-3 rounded-md font-medium bg-gray-900 hover:bg-black text-white text-lg shadow-sm transition-all duration-200"
+        className="w-full py-3 sm:py-3.5 rounded-xl font-semibold bg-gray-900 hover:bg-black text-white text-base sm:text-lg shadow-md transition-all duration-200"
               disabled={isSubmitting || !allAnswered}
             >
               {isSubmitting ? 'Submitting...' : 'Submit Answers'}
@@ -287,21 +274,21 @@ const Home: NextPage<HomeProps> = ({ questions }) => {
 
         {/* Confirmation Modal */}
         {showConfirm && (
-          <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg border shadow-xl p-8 max-w-md w-full text-center">
+          <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-4">
+            <div className="bg-white rounded-2xl border shadow-2xl p-6 sm:p-8 max-w-md w-full text-center">
               <h3 className="text-2xl font-semibold mb-4">Ready to submit?</h3>
               <p className="mb-6 text-gray-600">You’ve answered all questions. Submit to see your results.</p>
               <div className="flex gap-4 justify-center">
                 <button
                   onClick={handleSubmit}
-                  className="px-6 py-3 rounded-md font-medium bg-gray-900 hover:bg-black text-white text-lg shadow-sm transition-all duration-200"
+                  className="px-6 py-3 rounded-xl font-semibold bg-gray-900 hover:bg-black text-white text-base sm:text-lg shadow-md transition-all duration-200"
                   disabled={isSubmitting || !allAnswered}
                 >
                   {isSubmitting ? 'Submitting...' : 'Yes, show my results'}
                 </button>
                 <button
                   onClick={() => setShowConfirm(false)}
-                  className="px-6 py-3 rounded-md font-medium bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 text-lg shadow-sm transition-all duration-200"
+                  className="px-6 py-3 rounded-xl font-semibold bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 text-base sm:text-lg shadow-sm transition-all duration-200"
                   disabled={isSubmitting}
                 >
                   Cancel

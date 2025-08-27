@@ -16,7 +16,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "target": "ES2017"
+    "target": "ES2017",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"],
+      "@types/*": ["types/*"],
+      "@lib/*": ["lib/*"],
+      "@data/*": ["data/*"]
+    }
   },
   "include": [
     "next-env.d.ts",
