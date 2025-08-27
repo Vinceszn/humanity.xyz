@@ -169,12 +169,13 @@ export default function Results() {
               } catch {}
             }
         }
-        const API_BASE = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE || 'http://127.0.0.1:8000';
+  // Prefer relative '/api' in production so Vercel rewrite can proxy to FastAPI
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE || (process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8000');
         // Path A: if we have resultId+token and a live API supports it
         let serverData: any = null;
         if (resultId && sig) {
           try {
-            const resp = await fetch(`${API_BASE}/results/${resultId}?token=${encodeURIComponent(sig)}`);
+            const resp = await fetch(`${API_BASE}/api/results/${resultId}?token=${encodeURIComponent(sig)}`);
             if (resp.ok) {
               serverData = await resp.json();
             }
@@ -203,7 +204,7 @@ export default function Results() {
           }));
         } else {
           try {
-            const arcsResp = await fetch(`${API_BASE}/data/archetypes`).then(r => r.ok ? r.json() : Promise.reject(r.statusText));
+            const arcsResp = await fetch(`${API_BASE}/api/data/archetypes`).then(r => r.ok ? r.json() : Promise.reject(r.statusText));
             const archetypes = (arcsResp.archetypes || []) as Array<{ letter?: string; code?: string; name?: string; archetype?: string; description?: string }>;
             const byLetter: Record<string, { name: string; description: string }> = {};
             archetypes.forEach(a => {
