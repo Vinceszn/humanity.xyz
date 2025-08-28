@@ -34,11 +34,11 @@ export default function ArchetypePage({ letter }: { letter: string }) {
   const [color, setColor] = useState<string>(COLOR_MAP[letter] || '#1f2937');
   const [name, setName] = useState<string>('');
 
-  // Load basic name from API (via NEXT_PUBLIC_API_URL)
+  // Load basic name from API (use relative '/api' in prod so Vercel rewrite proxies)
   useEffect(() => {
     let mounted = true;
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
-    fetch(`${API_BASE}/data/archetypes`)
+    const API_BASE = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE || (process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8000');
+    fetch(`${API_BASE}/api/data/archetypes`)
       .then(r => (r.ok ? r.json() : null))
       .then((data) => {
         if (!mounted || !data) return;

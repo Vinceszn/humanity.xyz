@@ -10,7 +10,8 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ questions }) => {
   const router = useRouter();
-  const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+  // Use relative '/api' in production so Vercel can proxy via rewrite; use localhost in dev
+  const API_BASE = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE || (process.env.NODE_ENV === 'production' ? '' : 'http://127.0.0.1:8000');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const questionStartRef = useRef<number>(Date.now());
@@ -45,7 +46,7 @@ const Home: NextPage<HomeProps> = ({ questions }) => {
 
     try {
       // Stateless submission: score locally via API, then build markdown report
-      const scoreResp = await fetch(`${API_BASE}/score`, {
+  const scoreResp = await fetch(`${API_BASE}/api/score`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ answers }),
@@ -60,7 +61,7 @@ const Home: NextPage<HomeProps> = ({ questions }) => {
       // Attempt to build markdown report (non-fatal if it fails)
       let reportMarkdown: string | undefined = undefined;
       try {
-        const reportResp = await fetch(`${API_BASE}/report`, {
+  const reportResp = await fetch(`${API_BASE}/api/report`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ answers, title: 'HUMANITY Archetype Report' }),
@@ -326,8 +327,8 @@ const Home: NextPage<HomeProps> = ({ questions }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  // In production, this should use environment variables for the API URL
-  const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+  // Build-time fetch: try server-to-server via env; falls back to localhost for dev
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE || process.env.NEXT_PUBLIC_API_URL || process.env.API_BASE || 'http://127.0.0.1:8000';
   let data: any = { questions: [] };
   try {
     const response = await fetch(`${API_BASE}/data/questions`);
